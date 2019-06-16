@@ -1,0 +1,376 @@
+.post-entry pre,
+.post-entry .highlight {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 3px;
+  background-color: #e9edf2;
+  border-width: 1px 0;
+  overflow: auto;
+  color: #4d4d4c;
+  line-height: 1.3rem;
+  margin-bottom: 1rem;
+}
+.post-entry .highlight .gutter pre,
+.post-entry .gist .gist-file .gist-data .line-numbers {
+  color: #666;
+  font-size: 0.8rem;
+}
+.post-entry h1,
+.post-entry h2,
+.post-entry h3,
+.post-entry h4,
+.post-entry h5,
+.post-entry h6 {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #eaecef;
+  font-weight: bold;
+}
+.post-entry h1 {
+  font-size: 2rem;
+}
+.post-entry h2 {
+  font-size: 1.5rem;
+}
+.post-entry h3 {
+  font-size: 1.3rem;
+}
+.post-entry h4 {
+  font-size: 1.2rem;
+}
+.post-entry h5 {
+  font-size: 1rem;
+}
+.post-entry h6 {
+  font-size: 1rem;
+  color: color-grey;
+}
+.post-entry hr {
+  border: 1px dashed #ddd;
+}
+.post-entry strong {
+  font-weight: bold;
+}
+.post-entry em,
+.post-entry cite {
+  font-style: italic;
+}
+.post-entry sup,
+.post-entry sub {
+  font-size: 0.75rem;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.post-entry sup {
+  top: -0.5rem;
+}
+.post-entry sub {
+  bottom: -0.2rem;
+}
+.post-entry small {
+  font-size: 0.85rem;
+}
+.post-entry acronym,
+.post-entry abbr {
+  border-bottom: 1px dotted;
+}
+.post-entry ul,
+.post-entry ol,
+.post-entry dl {
+  font-size: 0.875rem;
+  margin: 0 20px;
+  line-height: 1.6rem;
+}
+.post-entry ul ul,
+.post-entry ol ul,
+.post-entry ul ol,
+.post-entry ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.post-entry ul {
+  list-style: disc;
+}
+.post-entry ol {
+  list-style: decimal;
+}
+.post-entry dt {
+  font-weight: bold;
+}
+.post-entry {
+  width: 1080px;
+  height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.post-entry .post-wrap {
+  width: 777px;
+  padding: 3rem 3rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-bottom: 7rem;
+  background-color: #fff;
+  border-radius: 4px;
+  border-bottom: 1px solid #eaecef;
+}
+.post-entry .post-toc {
+  flex: 1;
+}
+.post-entry .post-toc .toc {
+  margin-bottom: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-left: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.post-entry .post-toc a {
+  color: #999;
+  font-size: 0.8rem;
+}
+.post-entry .post-toc a:hover {
+  color: #24292e;
+}
+.post-entry .post-toc ol,
+.post-entry .post-toc ul {
+  line-height: 1.2rem;
+  list-style: none;
+  margin-right: 0;
+}
+.post-entry p,
+.post-entry table {
+  font-size: 0.875rem;
+  line-height: 1.6rem;
+  margin: 1rem 0;
+}
+.post-entry a {
+  color: #258fb8;
+  text-decoration: none;
+}
+.post-entry a:hover {
+  text-decoration: underline;
+}
+.post-entry ul,
+.post-entry ol,
+.post-entry dl {
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+.post-entry img,
+.post-entry video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+.post-entry iframe {
+  border: none;
+}
+.post-entry table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.post-entry th {
+  font-weight: bold;
+  border-bottom: 3px solid #ddd;
+  padding-bottom: 0.5em;
+}
+.post-entry td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+.post-entry blockquote {
+  font-size: 0.9rem;
+  margin: 0.9rem 0;
+  text-align: left;
+  padding: 0.2rem 1rem;
+  color: #657279;
+  background-color: #f7f7f7;
+  border-left: 7px solid #cbcbcb;
+}
+.post-entry blockquote footer {
+  font-size: 1rem;
+  margin: 1.6rem 0;
+}
+.post-entry blockquote footer cite:before {
+  content: '—';
+  padding: 0 0.5em;
+}
+.post-entry img {
+  width: 100%;
+  border-radius: 3px;
+}
+.post-entry pre,
+.post-entry code {
+  font-size: 0.8rem;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+.post-entry code {
+  margin: 0 0.5rem;
+  color: #ff502c;
+  background: #fff5f5;
+  padding: 0 0.3em;
+  border-radius: 3px;
+  border: 1px solid #eee;
+  font-size: 0.9rem;
+}
+.post-entry pre code {
+  background: none;
+  text-shadow: none;
+  padding: 0;
+}
+.post-entry .highlight pre {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.post-entry .highlight table {
+  margin: 0;
+  width: auto;
+}
+.post-entry .highlight td {
+  border: none;
+  padding: 0;
+}
+.post-entry .highlight figcaption {
+  font-size: 0.9em;
+  color: #066;
+  line-height: 2em;
+  margin-bottom: 1em;
+}
+.post-entry .highlight figcaption a {
+  float: right;
+}
+.post-entry .highlight .gutter pre {
+  text-align: right;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+}
+.post-entry .highlight .line {
+  height: 1rem;
+}
+.post-entry .highlight .line.marked {
+  background: #d6d6d6;
+}
+.post-entry .gist {
+  margin: 0 -20px;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px 0;
+  background: #fff;
+  padding: 15px 20px 15px 0;
+}
+.post-entry .gist .gist-file {
+  border: none;
+  font-family: Consolas, Monaco, Menlo, Consolas, monospace;
+  margin: 0;
+}
+.post-entry .gist .gist-file .gist-data {
+  background: none;
+  border: none;
+}
+.post-entry .gist .gist-file .gist-data .line-numbers {
+  background: none;
+  border: none;
+  padding: 0 20px 0 0;
+}
+.post-entry .gist .gist-file .gist-data .line-data {
+  padding: 0 !important;
+}
+.post-entry .gist .gist-file .highlight {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.post-entry .gist .gist-file .gist-meta {
+  background: #fff;
+  color: #066;
+  font: 0.85rem font-sans;
+  text-shadow: 0 0;
+  padding: 0;
+  margin-top: 1rem;
+  margin-left: 20px;
+}
+.post-entry .gist .gist-file .gist-meta a {
+  color: #258fb8;
+  font-weight: normal;
+}
+.post-entry .gist .gist-file .gist-meta a:hover {
+  text-decoration: underline;
+}
+pre .title {
+  color: #066;
+}
+pre .comment {
+  color: #738191;
+}
+pre .built_in,
+pre .string,
+pre .number {
+  font-weight: 600;
+}
+pre .number {
+  color: #660e7a;
+}
+pre .variable,
+pre .attribute,
+pre .tag,
+pre .regexp,
+pre .ruby .constant,
+pre .xml .tag .title,
+pre .xml .pi,
+pre .xml .doctype,
+pre .html .doctype,
+pre .css .id,
+pre .css .class,
+pre .css .pseudo {
+  color: #c82829;
+}
+pre .preprocessor,
+pre .built_in,
+pre .literal,
+pre .params,
+pre .constant {
+  color: #a31515;
+}
+pre .class,
+pre .ruby .class .title,
+pre .css .rules .attribute {
+  color: #008000;
+}
+pre .string,
+pre .value,
+pre .inheritance,
+pre .header,
+pre .ruby .symbol,
+pre .xml .cdata {
+  color: #008000;
+}
+pre .css .hexcolor {
+  color: #3e999f;
+}
+pre .function,
+pre .python .decorator,
+pre .python .title,
+pre .ruby .function .title,
+pre .ruby .title .keyword,
+pre .perl .sub,
+pre .javascript .title,
+pre .coffeescript .title {
+  color: #4271ae;
+}
+pre .keyword,
+pre .javascript .function {
+  font-weight: 600;
+  color: #00f;
+}
