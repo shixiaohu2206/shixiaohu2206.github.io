@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Utone</title>
+  
+  <subtitle>虎虎</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.utone.xyz/"/>
+  <updated>2019-12-19T03:37:45.584Z</updated>
+  <id>https://blog.utone.xyz/</id>
+  
+  <author>
+    <name>Utone</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>树形数据结构与扁平数据结构互转</title>
+    <link href="https://blog.utone.xyz//2019121957410/"/>
+    <id>https://blog.utone.xyz//2019121957410/</id>
+    <published>2019-12-19T11:09:27.000Z</published>
+    <updated>2019-12-19T03:37:45.584Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;a class=&quot;post-anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;近日有需求做链路日志系统，从 elasticsearch 查询到的日志数据是扁平化结构，数据中包含层级关系的字段，前端按照层级展示。&lt;/p&gt;
+&lt;p&gt;所以需要对扁
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="Javascript" scheme="https://blog.utone.xyz/tags/Javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>优雅处理 async/await 异常</title>
+    <link href="https://blog.utone.xyz//2019111331593/"/>
+    <id>https://blog.utone.xyz//2019111331593/</id>
+    <published>2019-11-13T19:45:04.000Z</published>
+    <updated>2019-12-19T03:37:45.580Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;a class=&quot;post-anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;async/await&lt;/code&gt; 是 ES7 中的新特性，方便开发者以同步代码书写异步调用，避免回调地狱&lt;/p&gt;
+&lt;p&gt;但是对于这样的代码，怎样
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="async" scheme="https://blog.utone.xyz/tags/async/"/>
+    
+      <category term="await" scheme="https://blog.utone.xyz/tags/await/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主题新增百度统计图表功能</title>
+    <link href="https://blog.utone.xyz//2019111314005/"/>
+    <id>https://blog.utone.xyz//2019111314005/</id>
+    <published>2019-11-13T11:25:48.000Z</published>
+    <updated>2019-12-19T03:37:45.568Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a href=&quot;/2019111314005/1.jpg&quot; data-caption=&quot;Chart.js&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/2019111314005/1.jpg&quot; alt=&quot;Chart.js&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;前言
+      
+    
+    </summary>
+    
+      <category term="Usage" scheme="https://blog.utone.xyz/categories/Usage/"/>
+    
+    
+      <category term="Chart" scheme="https://blog.utone.xyz/tags/Chart/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主题使用文档</title>
+    <link href="https://blog.utone.xyz//2019110815531/"/>
+    <id>https://blog.utone.xyz//2019110815531/</id>
+    <published>2019-11-08T19:16:35.000Z</published>
+    <updated>2019-12-19T03:37:45.568Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;/images/huhu.png&quot; data-caption=&quot;huhu&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/images/huhu.png&quot; alt=&quot;huhu&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;a cl
+      
+    
+    </summary>
+    
+      <category term="Usage" scheme="https://blog.utone.xyz/categories/Usage/"/>
+    
+    
+      <category term="HEXO-THEME-HUHU" scheme="https://blog.utone.xyz/tags/HEXO-THEME-HUHU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker及docker-compose 安装部署记录</title>
+    <link href="https://blog.utone.xyz//201911012681/"/>
+    <id>https://blog.utone.xyz//201911012681/</id>
+    <published>2019-11-01T18:49:06.000Z</published>
+    <updated>2019-12-19T03:37:45.568Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a href=&quot;/201911012681/1.png&quot; data-caption=&quot;媳妇最美&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/201911012681/1.png&quot; alt=&quot;媳妇最美&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;前言&quot;&gt;前言&lt;a cla
+      
+    
+    </summary>
+    
+      <category term="Note" scheme="https://blog.utone.xyz/categories/Note/"/>
+    
+    
+      <category term="docker" scheme="https://blog.utone.xyz/tags/docker/"/>
+    
+      <category term="gogs" scheme="https://blog.utone.xyz/tags/gogs/"/>
+    
+      <category term="egg" scheme="https://blog.utone.xyz/tags/egg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Travis CI持续集成Hexo博客</title>
+    <link href="https://blog.utone.xyz//2019091039107/"/>
+    <id>https://blog.utone.xyz//2019091039107/</id>
+    <published>2019-09-10T18:00:25.000Z</published>
+    <updated>2019-12-19T03:37:45.568Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a href=&quot;/2019091039107/ci.png&quot; data-caption=&quot;媳妇最美&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/2019091039107/ci.png&quot; alt=&quot;媳妇最美&quot;&gt;&lt;/a&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="TravisCI" scheme="https://blog.utone.xyz/tags/TravisCI/"/>
+    
+      <category term="Hexo" scheme="https://blog.utone.xyz/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo博客添加Swiftype站内搜索</title>
+    <link href="https://blog.utone.xyz//2019083151629/"/>
+    <id>https://blog.utone.xyz//2019083151629/</id>
+    <published>2019-08-31T16:24:49.000Z</published>
+    <updated>2019-12-19T03:37:45.556Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a href=&quot;/2019083151629/7.jpg&quot; data-caption=&quot;媳妇最美&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/2019083151629/7.jpg&quot; alt=&quot;媳妇最美&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;选择&quot;&gt;选择&lt;a c
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="Swiftype" scheme="https://blog.utone.xyz/tags/Swiftype/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>倒影</title>
+    <link href="https://blog.utone.xyz//2019082232923/"/>
+    <id>https://blog.utone.xyz//2019082232923/</id>
+    <published>2019-08-22T12:41:27.000Z</published>
+    <updated>2019-12-19T03:37:45.572Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a href=&quot;/2019082232923/1.jpg&quot; data-caption=&quot;媳妇最美&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/2019082232923/1.jpg&quot; alt=&quot;媳妇最美&quot;&gt;&lt;/a&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Daily" scheme="https://blog.utone.xyz/categories/Daily/"/>
+    
+    
+      <category term="倒影" scheme="https://blog.utone.xyz/tags/%E5%80%92%E5%BD%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>楼顶</title>
+    <link href="https://blog.utone.xyz//2019080423894/"/>
+    <id>https://blog.utone.xyz//2019080423894/</id>
+    <published>2019-08-04T15:42:52.000Z</published>
+    <updated>2019-12-19T03:37:45.584Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;公司楼顶真的是风景极美的地方，适合放风~&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Daily" scheme="https://blog.utone.xyz/categories/Daily/"/>
+    
+    
+      <category term="楼顶" scheme="https://blog.utone.xyz/tags/%E6%A5%BC%E9%A1%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>天空</title>
+    <link href="https://blog.utone.xyz//2019072041993/"/>
+    <id>https://blog.utone.xyz//2019072041993/</id>
+    <published>2019-07-20T21:52:10.000Z</published>
+    <updated>2019-12-19T03:37:45.580Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a href=&quot;/2019072041993/1.jpeg&quot; data-caption=&quot;媳妇最美&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/2019072041993/1.jpeg&quot; alt=&quot;媳妇最美&quot;&gt;&lt;/a&gt;
+&lt;p&gt;媳妇拍的不错～～&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Daily" scheme="https://blog.utone.xyz/categories/Daily/"/>
+    
+    
+      <category term="天空" scheme="https://blog.utone.xyz/tags/%E5%A4%A9%E7%A9%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>南京游</title>
+    <link href="https://blog.utone.xyz//2019072020133/"/>
+    <id>https://blog.utone.xyz//2019072020133/</id>
+    <published>2019-07-20T21:52:10.000Z</published>
+    <updated>2019-12-19T03:37:45.572Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;前言&lt;a class=&quot;post-anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;南京，呆了小两年吧，旧地重游，临行前几日患了热毒，第二天在南京一大早就去南京中医院，也算旅游中难忘的回忆了～～&lt;/p&gt;
+&lt;/block
+      
+    
+    </summary>
+    
+      <category term="Travel" scheme="https://blog.utone.xyz/categories/Travel/"/>
+    
+    
+      <category term="南京" scheme="https://blog.utone.xyz/tags/%E5%8D%97%E4%BA%AC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git服务器端钩子</title>
+    <link href="https://blog.utone.xyz//201907097636/"/>
+    <id>https://blog.utone.xyz//201907097636/</id>
+    <published>2019-07-09T18:49:06.000Z</published>
+    <updated>2019-12-19T03:37:45.568Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;pre-receive&quot;&gt;pre-receive&lt;a class=&quot;post-anchor&quot; href=&quot;#pre-receive&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;处理来自客户端的推送操作时，最先被调用的脚本是 pre-receive。 它从标准输入获取一系列被推送的引
+      
+    
+    </summary>
+    
+      <category term="Note" scheme="https://blog.utone.xyz/categories/Note/"/>
+    
+    
+      <category term="git" scheme="https://blog.utone.xyz/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PWA简单介绍</title>
+    <link href="https://blog.utone.xyz//2019061422121/"/>
+    <id>https://blog.utone.xyz//2019061422121/</id>
+    <published>2019-06-14T19:14:06.000Z</published>
+    <updated>2019-12-19T03:37:45.564Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;PWA（Progressive Web App）, 即渐进式 web 应用。PWA 本质上是 web 应用，目的是通过多项新技术，在安全、性能、体验等方面给用户原生应用的体验。而且无需像原生应用那样繁琐的下载、安装、升级等操作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;打开&lt;code&gt;chrome://inspect/#service-workers&lt;/code&gt;可查看 chrome 当前运行的 service worker&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代码规范</title>
+    <link href="https://blog.utone.xyz//2019061435373/"/>
+    <id>https://blog.utone.xyz//2019061435373/</id>
+    <published>2019-06-14T19:04:06.000Z</published>
+    <updated>2019-12-19T03:37:45.568Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;代码规范优点&quot;&gt;&lt;a href=&quot;#代码规范优点&quot; class=&quot;headerlink&quot; title=&quot;代码规范优点&quot;&gt;&lt;/a&gt;代码规范优点&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;由于项目开发多成员协作问题，程序员开发习惯不同，项目的不断迭代会导致代码质量问题、代码维护问题、可读性问题的出现，所以好的校验工具可以确保一个项目遵循代码规范、避免一些常见的隐患出现&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="https://blog.utone.xyz/categories/Note/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>总结笔记20190614</title>
+    <link href="https://blog.utone.xyz//2019061421187/"/>
+    <id>https://blog.utone.xyz//2019061421187/</id>
+    <published>2019-06-14T17:44:06.000Z</published>
+    <updated>2019-12-19T03:37:45.584Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;解决 chrome network 中出现&lt;code&gt;provisional headers are shown&lt;/code&gt;，导致跨域时，查看不了 cookie 的携带情况&lt;ul&gt;
+&lt;li&gt;解决方法&lt;a href=&quot;https://stackoverflow.
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>总结笔记20190415</title>
+    <link href="https://blog.utone.xyz//2019041521155/"/>
+    <id>https://blog.utone.xyz//2019041521155/</id>
+    <published>2019-04-15T19:14:06.000Z</published>
+    <updated>2019-12-19T03:37:45.584Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;Async/Await 从 Node 版本 v7.6.0 开始支持&lt;/li&gt;
+&lt;li&gt;setTimeout 的定时器值推荐最小使用 16.7ms 的原因（16.7 = 1000 / 60, 即每秒 60 帧）&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;超出部分展示省略号&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Eslint 配置参数说明</title>
+    <link href="https://blog.utone.xyz//2019041516860/"/>
+    <id>https://blog.utone.xyz//2019041516860/</id>
+    <published>2019-04-15T17:39:06.000Z</published>
+    <updated>2019-12-19T03:37:45.556Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Eslint-配置参数说明&quot;&gt;Eslint 配置参数说明&lt;a class=&quot;post-anchor&quot; href=&quot;#Eslint-配置参数说明&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;0 或’off’：关闭规则。&lt;/li&gt;
+&lt;li&gt;1 或’warn’：打开规则，并且
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+      <category term="Eslint" scheme="https://blog.utone.xyz/tags/Eslint/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>H5与Native交互</title>
+    <link href="https://blog.utone.xyz//2019041543434/"/>
+    <id>https://blog.utone.xyz//2019041543434/</id>
+    <published>2019-04-15T17:35:06.000Z</published>
+    <updated>2019-12-19T03:37:45.556Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;介绍三种-APP-的开发模式&quot;&gt;&lt;a href=&quot;#介绍三种-APP-的开发模式&quot; class=&quot;headerlink&quot; title=&quot;介绍三种 APP 的开发模式&quot;&gt;&lt;/a&gt;介绍三种 APP 的开发模式&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Native&lt;/li&gt;
+&lt;li&gt;WebAPP&lt;/li&gt;
+&lt;li&gt;HybridAPP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Native&quot;&gt;&lt;a href=&quot;#Native&quot; class=&quot;headerlink&quot; title=&quot;Native&quot;&gt;&lt;/a&gt;Native&lt;/h3&gt;&lt;h4 id=&quot;优点&quot;&gt;&lt;a href=&quot;#优点&quot; class=&quot;headerlink&quot; title=&quot;优点&quot;&gt;&lt;/a&gt;优点&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;原生应用。性能最好，交互体验有优势&lt;/li&gt;
+&lt;li&gt;可以调用移动硬件设备的底层功能（摄像头、日历和地理位置等）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;更新体验较差、需要用户手动更新。&lt;/li&gt;
+&lt;li&gt;苹果商店发布流程繁琐&lt;/li&gt;
+&lt;li&gt;使用不同的开发语言，所以开发、维护成本大&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>函数防抖、函数节流</title>
+    <link href="https://blog.utone.xyz//2019021449032/"/>
+    <id>https://blog.utone.xyz//2019021449032/</id>
+    <published>2019-02-14T10:31:06.000Z</published>
+    <updated>2019-12-19T03:37:45.572Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;函数消抖（debounce）&quot;&gt;&lt;a href=&quot;#函数消抖（debounce）&quot; class=&quot;headerlink&quot; title=&quot;函数消抖（debounce）&quot;&gt;&lt;/a&gt;函数消抖（debounce）&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;当调用函数 n 秒后，才会执行该动作，若在这 n 秒内又调用该函数则将取消前一次并重新计算执行时间&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;代码原理&quot;&gt;&lt;a href=&quot;#代码原理&quot; class=&quot;headerlink&quot; title=&quot;代码原理&quot;&gt;&lt;/a&gt;代码原理&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;设定一个全局变量保存定时器，事件触发时，判断定时器是否存在，存在时，消除定时器，不存在时，重新设定定时器，确保一段时间内，只存在一个定时器。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx开启gzip配置</title>
+    <link href="https://blog.utone.xyz//2019020134456/"/>
+    <id>https://blog.utone.xyz//2019020134456/</id>
+    <published>2019-02-01T00:00:00.000Z</published>
+    <updated>2019-12-19T03:37:45.568Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Nginx-开启-gzip-配置&quot;&gt;Nginx 开启 gzip 配置&lt;a class=&quot;post-anchor&quot; href=&quot;#Nginx-开启-gzip-配置&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;server &amp;#123
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="Linux" scheme="https://blog.utone.xyz/tags/Linux/"/>
+    
+      <category term="Nginx" scheme="https://blog.utone.xyz/tags/Nginx/"/>
+    
+  </entry>
+  
+</feed>
