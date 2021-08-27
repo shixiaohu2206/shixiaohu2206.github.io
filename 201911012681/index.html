@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <script>
+  ;(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-WJ7P5KL')
+</script> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> <meta name="baidu-site-verification" content="vvVgSQUzPU"><meta name="google-site-verification" content="VQowHv5lAVVWJxjKI9bnAWT7NGdOrfS5KnLF07-B7w0"><meta name="baidu_union_verify" content="e41bcda632ad60427602fc274753bb7f">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Utone,虎虎,博客,个人,utone">
+    <meta name="description" content="Utone|虎虎|博客|个人|utone">
+    
+    <title>
+      docker及docker-compose 安装部署记录 - Utone
+    </title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Docker-的原因"><span class="toc-text">使用 Docker 的原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-dokcer"><span class="toc-text">安装 dokcer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Docker-CE（社区版）"><span class="toc-text">安装 Docker CE（社区版）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-DOCKER-CE"><span class="toc-text">安装 DOCKER CE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#粗心大意的报错"><span class="toc-text">粗心大意的报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-docker-compose"><span class="toc-text">安装 docker-compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建-docker-compose-yml"><span class="toc-text">构建 docker-compose.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx-转发配置"><span class="toc-text">Nginx 转发配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-及-docker-compose-常用命令"><span class="toc-text">docker 及 docker-compose 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker、nginx"><span class="toc-text">docker、nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose"><span class="toc-text">docker-compose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-hub、github-自动部署"><span class="toc-text">Docker hub、github 自动部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#期间遇到的问题"><span class="toc-text">期间遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search">
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg">
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class>
+          首页
+        </a>
+        
+        <a href="/archives" class>
+          归档
+        </a>
+        
+        <a href="/categories" class>
+          分类
+        </a>
+        
+        <a href="/tags" class>
+          标签
+        </a>
+        
+        <a href="/friends" class>
+          友链
+        </a>
+        
+        <a href="/about" class>
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Utone</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Utone</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class>
+            首页
+          </a>
+          
+          <a href="/archives" class>
+            归档
+          </a>
+          
+          <a href="/categories" class>
+            分类
+          </a>
+          
+          <a href="/tags" class>
+            标签
+          </a>
+          
+          <a href="/friends" class>
+            友链
+          </a>
+          
+          <a href="/about" class>
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shixiaohu2206" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.facebook.com/shi.xiaohu.5" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-facebook"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/shi_xiaohu/" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">docker及docker-compose 安装部署记录</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/11/01</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/201911012681/" data-flag-title="docker及docker-compose 安装部署记录">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Note">Note</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/docker">docker</a>
+                  
+                
+                  
+                    <a href="/tags/gogs">gogs</a>
+                  
+                
+                  
+                    <a href="/tags/egg">egg</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <a href="/201911012681/1.png" data-caption="媳妇最美" data-fancybox="images"><img src="/201911012681/1.png" alt="媳妇最美"></a>
+<h2 id="前言">前言<a class="post-anchor" href="#前言"></a></h2><p>腾讯云服务器将要到期，在忙着服务器搬迁的事，博客也荒废了挺久</p>
+<h2 id="使用-Docker-的原因">使用 Docker 的原因<a class="post-anchor" href="#使用-Docker-的原因"></a></h2><ul>
+<li>学习新的部署方式</li>
+<li>方便服务器搬迁，快速部署，不会浪费大量时间在环境配置上</li>
+</ul>
+<h2 id="安装-dokcer">安装 dokcer<a class="post-anchor" href="#安装-dokcer"></a></h2><h3 id="安装-Docker-CE（社区版）">安装 Docker CE（社区版）<a class="post-anchor" href="#安装-Docker-CE（社区版）"></a></h3><blockquote>
+<p>官方教程 <a href="https://docs.docker.com/install/linux/docker-ce/centos/" rel="external nofollow noopener noreferrer" target="_blank">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+</blockquote>
+<h3 id="安装-DOCKER-CE">安装 DOCKER CE<a class="post-anchor" href="#安装-DOCKER-CE"></a></h3><p>需要一个 Centos7 以上版本的环境</p>
+<ol>
+<li>卸载老版本</li>
+</ol>
+<pre><code class="hljs bash">sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine</code></pre>
+<ol>
+<li>安装最新版本的 Docker CE 和 containerd</li>
+</ol>
+<pre><code class="hljs bash">$ sudo yum install docker-ce docker-ce-cli containerd.io</code></pre>
+<ol start="2">
+<li>启动 Docker</li>
+</ol>
+<pre><code class="hljs bash">$ sudo service docker start</code></pre>
+<ol start="3">
+<li>验证 docker 是否安装成功</li>
+</ol>
+<pre><code class="hljs bash">$ sudo docker -v</code></pre>
+<h3 id="粗心大意的报错">粗心大意的报错<a class="post-anchor" href="#粗心大意的报错"></a></h3><p>拉取镜像时报错</p>
+<pre><code class="hljs bash">Cannot connect to the Docker daemon at unix:///var/run/docker.sock.</code></pre>
+<p>是因为没启动 docker…</p>
+<pre><code class="hljs bash">service docker start</code></pre>
+<h2 id="安装-docker-compose">安装 docker-compose<a class="post-anchor" href="#安装-docker-compose"></a></h2><blockquote>
+<p>docker-compose 是 docker 提供的命令行工具，用来定义和运行多个容器组成的应用。不要每次手动敲启动容器命令。</p>
+</blockquote>
+<p>推荐使用 pip 安装 docker-compose，因为 pip 可以为你自动对应版本问题</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 安装pip</span>
+yum -y install epel-release
+yum -y install python-pip
+
+<span class="hljs-comment">// 升级</span>
+pip install --upgrade pip
+
+<span class="hljs-comment">// 如果报这个error，执行下面命令</span>
+ERROR: Cannot uninstall <span class="hljs-string">'requests'</span>. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
+
+<span class="hljs-comment">// 安装requests</span>
+pip install --ignore-installed requests
+
+<span class="hljs-comment">// 安装docker-compose</span>
+pip install docker-compose</code></pre>
+<h2 id="构建-docker-compose-yml">构建 docker-compose.yml<a class="post-anchor" href="#构建-docker-compose-yml"></a></h2><p>容器之间的通信困扰了挺久，现版本不建议使用<code>link</code>来连接两个容器，<code>link</code>后续废弃，使用<code>networks</code>即可，进入容器内后，ping 另一个容器名，就可以查看另一个容器 IP，所以这边我只在 nginx 容器中暴露 80 端口，其他容器需要访问，直接在 nginx 做转发</p>
+<p>启动了三个应用</p>
+<ol>
+<li>nginx：做容器域名端口的转发</li>
+<li>gogs：因为公司内网对 github 做了拦截，所以使用 gogs 做中间代码版本库</li>
+<li>egg-nuxt：后台项目，实现 egg.js + nuxt.js + vue.js 的服务端渲染架子</li>
+</ol>
+<p>下方为<code>docker-compose.yml</code>范例，仅供参考</p>
+<pre><code class="hljs yml"><span class="hljs-attr">version:</span> <span class="hljs-string">'3.7'</span> <span class="hljs-comment">#使用docker-compose的版本</span>
+<span class="hljs-attr">services:</span>
+  <span class="hljs-attr">nginx:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">*****/nginx</span> <span class="hljs-comment">#使用的镜像</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">'nginx'</span>
+    <span class="hljs-attr">tty:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+    <span class="hljs-attr">depends_on:</span> <span class="hljs-comment">#依赖容器</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">gogs</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">egg-nuxt</span>
+    <span class="hljs-attr">ports:</span>  <span class="hljs-comment">#端口映射</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">'80:80'</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">'443:443'</span>
+    <span class="hljs-attr">networks:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">bridge</span>
+
+  <span class="hljs-attr">gogs:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">*****/gogs</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">'gogs'</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+    <span class="hljs-attr">networks:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">bridge</span>
+
+  <span class="hljs-attr">egg-nuxt:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">*****/egg-nuxt</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">'egg-nuxt'</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+    <span class="hljs-attr">networks:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">bridge</span>
+
+<span class="hljs-attr">networks:</span>
+  <span class="hljs-attr">bridge:</span></code></pre>
+<h2 id="Nginx-转发配置">Nginx 转发配置<a class="post-anchor" href="#Nginx-转发配置"></a></h2><p>因为每次重装应用后，docker 容器内的网络 IP 会改变，目前有两种方案：</p>
+<ol>
+<li>使用容器名作为 host，因为容器名是定义好的，不会改变</li>
+<li>用 docker 静态 IP ，是容器 IP 固定</li>
+</ol>
+<pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> api.com;
+    <span class="hljs-attribute">location</span> / &#123;
+        <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+        <span class="hljs-attribute">proxy_set_header</span> Host  <span class="hljs-variable">$http_host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Nginx-Proxy <span class="hljs-literal">true</span>;
+        <span class="hljs-attribute">proxy_set_header</span> Connection <span class="hljs-string">""</span>;
+        <span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">100m</span>; <span class="hljs-comment">#上传文件大小限制</span>
+        <span class="hljs-attribute">proxy_pass</span>      http://api:7001;
+
+    &#125;
+&#125;</code></pre>
+<h2 id="docker-及-docker-compose-常用命令">docker 及 docker-compose 常用命令<a class="post-anchor" href="#docker-及-docker-compose-常用命令"></a></h2><p>都是自己常用的命令</p>
+<h3 id="docker、nginx">docker、nginx<a class="post-anchor" href="#docker、nginx"></a></h3><pre><code class="hljs java"><span class="hljs-comment">// 查看当前文件大小</span>
+du -sh *
+
+<span class="hljs-comment">// 查看所有端口开放</span>
+netstat -ano
+netstat -lp
+
+<span class="hljs-comment">// 查看nginx目录</span>
+ps -ef | grep nginx
+
+
+<span class="hljs-comment">// 查看正在运行的容器</span>
+docker ps
+
+<span class="hljs-comment">// 查看所有的容器</span>
+docker ps -a
+
+<span class="hljs-comment">// 查看镜像</span>
+docker images
+
+<span class="hljs-comment">// 删除所有未被容器使用的镜像</span>
+docker image prune -a
+
+<span class="hljs-comment">// -d 后台运行</span>
+<span class="hljs-comment">// -it 在容器内可执行shell</span>
+<span class="hljs-comment">// -p 端口映射</span>
+<span class="hljs-comment">// --name 容器名</span>
+docker run -d --name=demo -p <span class="hljs-number">7001</span>:<span class="hljs-number">7001</span> gogs
+
+<span class="hljs-comment">// 进入容器内可执行shell</span>
+docker exec -it gogs /bin/bash
+
+<span class="hljs-comment">// 使用本地容器生成镜像</span>
+docker commit -a username -m <span class="hljs-string">'commit'</span> <span class="hljs-number">611f</span>10799671 *****/nginx:v1
+docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+
+<span class="hljs-comment">// --rm 是删除构建过程中，产生的临时镜像</span>
+<span class="hljs-comment">// -t 是指定镜像名称及标识</span>
+<span class="hljs-comment">// . 代表默认选择Dockerfile为构建文件</span>
+docker build --rm -t egg-nuxt:v1<span class="hljs-number">.0</span> .
+
+<span class="hljs-comment">// 登陆Docker</span>
+docker login
+
+<span class="hljs-comment">// push镜像到Docker Hub</span>
+docker push [OPTIONS] NAME[:TAG]
+
+<span class="hljs-comment">// 查看日志</span>
+docker logs *****/nginx</code></pre>
+<h3 id="docker-compose">docker-compose<a class="post-anchor" href="#docker-compose"></a></h3><p>需要在<code>docker-compose.yml</code>同级目录执行，命令与 docker 命令基本一致</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 后台启动应用</span>
+docker-compose up -d
+
+<span class="hljs-comment">// 删除删除所有容器,镜像</span>
+docker-compose down</code></pre>
+<h3 id="Docker-hub、github-自动部署">Docker hub、github 自动部署<a class="post-anchor" href="#Docker-hub、github-自动部署"></a></h3><blockquote>
+<p>在 github 项目的根目录添加<code>Dockerfile</code>文件，这样 Docker hub 就可以根据<code>Dockerfile</code>文件来自动构建</p>
+</blockquote>
+<p>使用现成的镜像固然很方便，但是有些配置还是需要自定义，所以现成镜像为基本，在上方做一些自定义，再生成新的镜像，就是最好的方式。Docker hub 提供了在云端自动构建镜像的能力。Docker hub 上的配置就不说了，网络上很多</p>
+<p>在自动构建 Nodejs 应用的过程遇到以下几点问题：</p>
+<ol>
+<li>使用 node 原生镜像，构建的包很大，解压后超过了 1GB</li>
+<li>构建时间长，基本要在 4 分钟以上</li>
+<li>使用 node alpine 镜像，用 git 拉取 github 代码比较困难</li>
+</ol>
+<p>解决方案</p>
+<ol>
+<li>使用 node alpine 镜像，体积小，构建速度快</li>
+<li>使用 ADD 命令，远程拉取 github 项目的 zip 包</li>
+</ol>
+<p><code>Dockerfile</code>范例，仅供参考</p>
+<pre><code class="hljs docker"><span class="hljs-comment">#使用alpine nodejs镜像、体积更小</span>
+<span class="hljs-keyword">FROM</span> node:<span class="hljs-number">10</span>-alpine
+<span class="hljs-comment">#新建工作目录</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> mkdir -p /project</span>
+<span class="hljs-comment">#下载项目代码</span>
+<span class="hljs-keyword">ADD</span><span class="bash"> https://github.com/********/egg-nuxt-framework/archive/master.zip /project/</span>
+<span class="hljs-comment">#解压、安装包、编译TS</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> <span class="hljs-built_in">cd</span> /project &amp;&amp; unzip master.zip &amp;&amp; <span class="hljs-built_in">cd</span> egg-nuxt-framework-master &amp;&amp; npm install &amp;&amp; npm run ci</span>
+<span class="hljs-comment">#进入到app目录下</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /project/egg-nuxt-framework-master</span>
+<span class="hljs-comment">#对外暴露的端口</span>
+<span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">7001</span>
+<span class="hljs-comment">#程序启动脚本</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"npm"</span>, <span class="hljs-string">"start"</span>]</span></code></pre>
+<h2 id="期间遇到的问题">期间遇到的问题<a class="post-anchor" href="#期间遇到的问题"></a></h2><ol>
+<li><p>在 push 代码到 gogs 后，gogs 的 post-receive 钩子会再 push 代码到 github，本来使用 ssh，需要在 gogs 容器中生成密钥提交到 github 上。生成后，在测试时发现以下报错</p>
+<pre><code class="hljs js">Host key verification failed.
+remote: fatal: Could not read <span class="hljs-keyword">from</span> remote repository.</code></pre>
+<p>这是因为 ssh 密钥不是 git 用户下生成的，艹，这个地方花了很久才解决，而且调试过程中还遇到了两次…想锤死自己</p>
+</li>
+<li><p>gogs 容器中没有装<code>vim</code>，只有<code>vi</code>，所以打开 ssh 密钥时，是一行展示的，无法复制，可以使用<code>scp</code>命令复制到另一台机器上，使用 vim 打开</p>
+</li>
+<li><p>push 代码不一定要 ssh 密钥，使用 github token 也可以实现，且更加方便<br>在 github 上生成 token</p>
+<pre><code class="hljs java">git remote add github https:<span class="hljs-comment">//&#123;token&#125;@github.com/*****/egg-nuxt-framework.git</span>
+git push -f github master</code></pre>
+</li>
+<li><p>push 代码到 gogs 时，一直报错 413</p>
+<pre><code class="hljs java">error: RPC failed; HTTP <span class="hljs-number">413</span> curl <span class="hljs-number">22</span> The requested URL returned error: <span class="hljs-number">413</span> Request Entity Too Large</code></pre>
+<p>是因为 gogs 是用 nginx 做转发，nginx 对上传文件有默认限制</p>
+<p>在 nginx 配置中新增<code>client_max_body_size 100m;</code>解决</p>
+<p>默认 1m</p>
+</li>
+</ol>
+<h2 id="最后">最后<a class="post-anchor" href="#最后"></a></h2><p>使用 docker 部署，走了许多弯路，选择合适镜像、容器之间通信就花了挺久，对于一个陌生的领域，确实需要花挺多精力来学习。</p>
+<p>共勉</p>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2019110815531/">主题使用文档</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2019091039107/">使用Travis CI持续集成Hexo博客</a>
+        
+    </div>
+  </div>
+
+  
+  <div class="google-ads">
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-9618079338040236" data-ad-slot="8288106873"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://blog.utone.xyz">Utone</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://blog.utone.xyz/201911012681/">https://blog.utone.xyz/201911012681/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://blog.utone.xyz">Utone</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://blog.utone.xyz">Utone</a> Powered by <a href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" rel="external nofollow noopener noreferrer" target="_blank">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= theme.gtm_id %>" height="0" width="0" style="display:none;visibility:hidden">
+                </iframe></noscript>
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"FjXColpwTL0BsrjJIN8Pmnn0-gzGzoHsz\",\"API_KEY\":\"Ar7tucPRn3KV7UOidQxESoys\"},\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"13728585\",\"access_token\":\"21.7db096dd216693971c38906559dffcfa.2592000.1579318074.2888690973-16666326\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    ;(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-9618079338040236',
+    enable_page_level_ads: true
+  })
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

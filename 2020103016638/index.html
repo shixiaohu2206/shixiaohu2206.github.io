@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <script>
+  ;(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-WJ7P5KL')
+</script> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> <meta name="baidu-site-verification" content="vvVgSQUzPU"><meta name="google-site-verification" content="VQowHv5lAVVWJxjKI9bnAWT7NGdOrfS5KnLF07-B7w0"><meta name="baidu_union_verify" content="e41bcda632ad60427602fc274753bb7f">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Utone,虎虎,博客,个人,utone">
+    <meta name="description" content="Utone|虎虎|博客|个人|utone">
+    
+    <title>
+      Event-Loop事件循环 - Utone
+    </title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-Loop"><span class="toc-text">Event Loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宏任务"><span class="toc-text">宏任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微任务"><span class="toc-text">微任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行机制"><span class="toc-text">运行机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EventLoop，哪些是宏任务、微任务"><span class="toc-text">EventLoop，哪些是宏任务、微任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宏任务-1"><span class="toc-text">宏任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#微任务-1"><span class="toc-text">微任务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试题"><span class="toc-text">面试题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#await-做了什么"><span class="toc-text">await 做了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-text">引用</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search">
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg">
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class>
+          首页
+        </a>
+        
+        <a href="/archives" class>
+          归档
+        </a>
+        
+        <a href="/categories" class>
+          分类
+        </a>
+        
+        <a href="/tags" class>
+          标签
+        </a>
+        
+        <a href="/friends" class>
+          友链
+        </a>
+        
+        <a href="/about" class>
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Utone</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Utone</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class>
+            首页
+          </a>
+          
+          <a href="/archives" class>
+            归档
+          </a>
+          
+          <a href="/categories" class>
+            分类
+          </a>
+          
+          <a href="/tags" class>
+            标签
+          </a>
+          
+          <a href="/friends" class>
+            友链
+          </a>
+          
+          <a href="/about" class>
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shixiaohu2206" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.facebook.com/shi.xiaohu.5" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-facebook"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/shi_xiaohu/" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">Event-Loop事件循环</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/10/30</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2020103016638/" data-flag-title="Event-Loop事件循环">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+        
+        
+        
+      </div>
+      <div>
+      </div>
+    </div>
+    <h2 id="Event-Loop">Event Loop<a class="post-anchor" href="#Event-Loop"></a></h2><p>为了协调事件（event），用户交互（user interaction），脚本（script），渲染（rendering），网络（networking）等，用户代理（user agent）必须使用事件循环（event loops）。（3 月 29 修订）</p>
+<p>JavaScript 引擎又称为 JavaScript 解释器，是 JavaScript 解释为机器码的工具，分别运行在浏览器和 Node 中。而根据上下文的不同，Event loop 也有不同的实现：其中 Node 使用了 libuv 库来实现 Event loop; 而在浏览器中，html 规范定义了 Event loop，具体的实现则交给不同的厂商去完成。</p>
+<p>所以，浏览器的 Event loop 和 Node 的 Event loop 是两个概念</p>
+<h2 id="宏任务">宏任务<a class="post-anchor" href="#宏任务"></a></h2><p>(macro)task（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）。</p>
+<p>浏览器为了能够使得 JS 内部(macro)task 与 DOM 任务能够有序的执行，会在一个(macro)task 执行结束后，在下一个(macro)task 执行开始前，对页面进行重新渲染，流程如下：</p>
+<p><code>(macro)task-&gt;渲染-&gt;(macro)task-&gt;...</code></p>
+<p>(macro)task 主要包含：script(整体代码)、setTimeout、setInterval、I/O、UI 交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境)</p>
+<h2 id="微任务">微任务<a class="post-anchor" href="#微任务"></a></h2><p>microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务。也就是说，在当前 task 任务后，下一个 task 之前，在渲染之前。</p>
+<p>所以它的响应速度相比 setTimeout（setTimeout 是 task）会更快，因为无需等渲染。也就是说，在某一个 macrotask 执行完后，就会将在它执行期间产生的所有 microtask 都执行完毕（在渲染前）。</p>
+<p>microtask 主要包含：Promise.then、MutaionObserver、process.nextTick(Node.js 环境)</p>
+<h2 id="运行机制">运行机制<a class="post-anchor" href="#运行机制"></a></h2><p>在事件循环中，每进行一次循环操作称为 tick，每一次 tick 的任务处理模型是比较复杂的，但关键步骤如下：</p>
+<ul>
+<li>执行一个宏任务（栈中没有就从事件队列中获取）</li>
+<li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+<li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+<li>当前宏任务执行完毕，开始检查渲染，然后 GUI 线程接管渲染</li>
+<li>渲染完毕后，JS 线程继续接管，开始下一个宏任务（从事件队列中获取）</li>
+</ul>
+<h3 id="EventLoop，哪些是宏任务、微任务">EventLoop，哪些是宏任务、微任务<a class="post-anchor" href="#EventLoop，哪些是宏任务、微任务"></a></h3><h4 id="宏任务-1">宏任务<a class="post-anchor" href="#宏任务-1"></a></h4><ol>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>I/O</li>
+<li>setImmediate (node)</li>
+<li>requestAnimationFrame (你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行)<code>https://juejin.im/post/5b6020b8e51d4535253b30d1</code></li>
+</ol>
+<h4 id="微任务-1">微任务<a class="post-anchor" href="#微任务-1"></a></h4><ol>
+<li>process.nextTick (node)</li>
+<li>MutationObserver</li>
+<li>Promise</li>
+</ol>
+<h2 id="面试题">面试题<a class="post-anchor" href="#面试题"></a></h2><p>问以下代码执行顺序</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 今日头条面试题</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'async1 start'</span>)
+    <span class="hljs-keyword">await</span> async2()
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'async1 end'</span>)
+&#125;
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async2</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'async2'</span>)
+&#125;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'script start'</span>)
+setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'settimeout'</span>)
+&#125;)
+async1()
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve</span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'promise1'</span>)
+    resolve()
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'promise2'</span>)
+&#125;)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'script end'</span>)
+
+
+script start
+async1 start
+async2
+promise1
+script end
+async1 end
+promise2
+settimeout</code></pre>
+<pre><code class="hljs js">setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'timer1'</span>)
+
+  <span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'promise1'</span>)
+  &#125;)
+&#125;, <span class="hljs-number">0</span>)
+
+setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'timer2'</span>)
+
+  <span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'promise2'</span>)
+  &#125;)
+&#125;, <span class="hljs-number">0</span>)
+
+<span class="hljs-comment">// 浏览器</span>
+time1
+promise1
+time2
+promise2
+
+<span class="hljs-comment">// Node</span>
+time1
+time2
+promise1
+promise2</code></pre>
+<h2 id="await-做了什么">await 做了什么<a class="post-anchor" href="#await-做了什么"></a></h2><p>从字面意思上看 await 就是等待，await 等待的是一个表达式，这个表达式的返回值可以是一个 promise 对象也可以是其他值。</p>
+<p>很多人以为 await 会一直等待之后的表达式执行完之后才会继续执行后面的代码，实际上 await 是一个让出线程的标志。await 后面的表达式会先执行一遍，将 await 后面的代码加入到 microtask 中，然后就会跳出整个 async 函数来执行后面的代码。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'async1 start'</span>)
+  <span class="hljs-keyword">await</span> async2()
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'async1 end'</span>)
+&#125;</code></pre>
+<p>等价于</p>
+<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'async1 start'</span>)
+  <span class="hljs-built_in">Promise</span>.resolve(async2()).then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'async1 end'</span>)
+  &#125;)
+&#125;</code></pre>
+<p>await async2();之后的 console.log(‘async1 end’);，也会塞入到微任务中</p>
+<h2 id="总结">总结<a class="post-anchor" href="#总结"></a></h2><ul>
+<li>同一个上下文下，微任务优先于宏任务执行</li>
+<li>setTimeout 属于宏任务执行，Promise 属于微任务，而 async 和 await 其实是 geneorator 的语法糖,实质上最后返回的也是 promise</li>
+</ul>
+<h2 id="引用">引用<a class="post-anchor" href="#引用"></a></h2><p>浏览器的执行顺序是在一开始会通篇扫描整个脚本,生成主执行栈,用于执行同步任务.而异步任务会加入至浏览器的任务队列中.当执行栈为空,就会去 Task 队列中(任务队列)取出需要执行的代码放入执行栈中去执行。而 Task 队列中,我们又再之前提及到分:微任务和宏任务<br>微任务的优先级大于宏任务,所以在执行栈为空的时候,首先会去执行 Micortask(微任务)队列,执行完毕后再去取 Macrotask(宏任务)队列去执行栈中执行,一次执行一个,再去检查 Micortask(微任务),若存在则执行 Microtask,若没有则取下一个 Macrotask 任务继续执行,直至为空。</p>
+<p>微任务和宏任务在 Node 的执行顺序</p>
+<p>Node 10 以前：</p>
+<p>执行完一个阶段的所有任务<br>执行完 nextTick 队列里面的内容<br>然后执行完微任务队列的内容<br>Node 11 以后：<br>和浏览器的行为统一了，都是每执行一个宏任务就执行完微任务队列。</p>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020103023020/">Flex弹性布局</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020093063178/">圣杯、双飞翼布局</a>
+        
+    </div>
+  </div>
+
+  
+  <div class="google-ads">
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-9618079338040236" data-ad-slot="8288106873"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://blog.utone.xyz">Utone</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://blog.utone.xyz/2020103016638/">https://blog.utone.xyz/2020103016638/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://blog.utone.xyz">Utone</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://blog.utone.xyz">Utone</a> Powered by <a href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" rel="external nofollow noopener noreferrer" target="_blank">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= theme.gtm_id %>" height="0" width="0" style="display:none;visibility:hidden">
+                </iframe></noscript>
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"FjXColpwTL0BsrjJIN8Pmnn0-gzGzoHsz\",\"API_KEY\":\"Ar7tucPRn3KV7UOidQxESoys\"},\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"13728585\",\"access_token\":\"21.7db096dd216693971c38906559dffcfa.2592000.1579318074.2888690973-16666326\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    ;(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-9618079338040236',
+    enable_page_level_ads: true
+  })
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

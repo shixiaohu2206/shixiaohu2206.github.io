@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <script>
+  ;(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-WJ7P5KL')
+</script> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> <meta name="baidu-site-verification" content="vvVgSQUzPU"><meta name="google-site-verification" content="VQowHv5lAVVWJxjKI9bnAWT7NGdOrfS5KnLF07-B7w0"><meta name="baidu_union_verify" content="e41bcda632ad60427602fc274753bb7f">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Utone,虎虎,博客,个人,utone">
+    <meta name="description" content="Utone|虎虎|博客|个人|utone">
+    
+    <title>
+      PWA - Utone
+    </title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA"><span class="toc-text">PWA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-介绍"><span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-核心功能、特性"><span class="toc-text">2. 核心功能、特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-特性"><span class="toc-text">2.1 特性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Service-Worker-生命周期"><span class="toc-text">3. Service Worker 生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-注册"><span class="toc-text">3.1 注册</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-安装"><span class="toc-text">3.2 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-激活"><span class="toc-text">3.3 激活</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Service-Worker-缓存功能"><span class="toc-text">3. Service Worker 缓存功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PWA-添加横幅，增加用户使用率"><span class="toc-text">PWA 添加横幅，增加用户使用率</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search">
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg">
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class>
+          首页
+        </a>
+        
+        <a href="/archives" class>
+          归档
+        </a>
+        
+        <a href="/categories" class>
+          分类
+        </a>
+        
+        <a href="/tags" class>
+          标签
+        </a>
+        
+        <a href="/friends" class>
+          友链
+        </a>
+        
+        <a href="/about" class>
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Utone</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Utone</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class>
+            首页
+          </a>
+          
+          <a href="/archives" class>
+            归档
+          </a>
+          
+          <a href="/categories" class>
+            分类
+          </a>
+          
+          <a href="/tags" class>
+            标签
+          </a>
+          
+          <a href="/friends" class>
+            友链
+          </a>
+          
+          <a href="/about" class>
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shixiaohu2206" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.facebook.com/shi.xiaohu.5" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-facebook"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/shi_xiaohu/" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">PWA</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2021/02/12</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/202102124606/" data-flag-title="PWA">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+        
+        
+        
+      </div>
+      <div>
+      </div>
+    </div>
+    <h2 id="PWA">PWA<a class="post-anchor" href="#PWA"></a></h2><h3 id="1-介绍">1. 介绍<a class="post-anchor" href="#1-介绍"></a></h3><blockquote>
+<p>PWA（Progressive Web App）渐进式增强 WEB 应用, 即渐进式 web 应用。PWA 本质上是 web 应用，目的是通过多项新技术，在安全、性能、体验等方面给用户原生应用的体验。而且无需像原生应用那样繁琐的下载、安装、升级等操作。</p>
+</blockquote>
+<p>打开<code>chrome://inspect/#service-workers</code>可查看 chrome 当前运行的 service worker</p>
+<h3 id="2-核心功能、特性">2. 核心功能、特性<a class="post-anchor" href="#2-核心功能、特性"></a></h3><ul>
+<li>PWA 中包含的核心功能及特性如下：</li>
+<li>Web App Manifest</li>
+<li>Service Worker</li>
+<li>Cache API 缓存</li>
+<li>Push&amp;Notification 推送与通知</li>
+<li>Background Sync 后台同步</li>
+<li>响应式设计</li>
+</ul>
+<h4 id="2-1-特性">2.1 特性<a class="post-anchor" href="#2-1-特性"></a></h4><ul>
+<li>基于 HTTPS 环境，这是构建 PWA 的硬性前提</li>
+<li>是一个独立的 worker 线程，独立于当前网页进程，有自己独立的 worker context</li>
+<li>可拦截 HTTP 请求和响应，可缓存文件，缓存的文件可以在网络离线状态时取到</li>
+<li>能向客户端推送消息</li>
+<li>不能直接操作 DOM</li>
+<li>异步实现，内部大都是通过 Promise 实现</li>
+</ul>
+<h3 id="3-Service-Worker-生命周期">3. Service Worker 生命周期<a class="post-anchor" href="#3-Service-Worker-生命周期"></a></h3><blockquote>
+<p>注册–安装–激活</p>
+</blockquote>
+<h4 id="3-1-注册">3.1 注册<a class="post-anchor" href="#3-1-注册"></a></h4><blockquote>
+<p>告诉浏览器 serviceworkerJS 文件存放在什么位置，浏览器下载、解析、执行。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">if</span> (<span class="hljs-string">'serviceWorker'</span> <span class="hljs-keyword">in</span> navigator) &#123;
+  <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    navigator.serviceWorker
+      .register(<span class="hljs-string">'/sw.js'</span>)
+      .then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">registration</span>) </span>&#123;
+        <span class="hljs-comment">// 注册成功</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'ServiceWorker registration successful with scope: '</span>, registration.scope)
+      &#125;)
+      .catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>&#123;
+        <span class="hljs-comment">// 注册失败:(</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'ServiceWorker registration failed: '</span>, err)
+      &#125;)
+  &#125;)
+&#125;</code></pre>
+<h4 id="3-2-安装">3.2 安装<a class="post-anchor" href="#3-2-安装"></a></h4><blockquote>
+<p>注册结束后，触发 install 事件，进行安装。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> CACHE_VERSION = <span class="hljs-string">'sw_v8'</span>
+<span class="hljs-keyword">var</span> CACHE_FILES = [<span class="hljs-string">'/js/jquery/min.js'</span>, <span class="hljs-string">'/js/zui/min.js'</span>, <span class="hljs-string">'/js/chanzhi.js'</span>]
+self.addEventListener(<span class="hljs-string">'install'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;
+  event.waitUntil(caches.open(CACHE_VERSION).then(<span class="hljs-function"><span class="hljs-params">cache</span> =&gt;</span> cache.addAll(CACHE_FILES)))
+&#125;)</code></pre>
+<h4 id="3-3-激活">3.3 激活<a class="post-anchor" href="#3-3-激活"></a></h4><blockquote>
+<p>当安装成功后，serviceworker 就会激活，这时就会处理 activate 事件回调 (提供了更新缓存策略的机会)。并可以处理功能性的事件 fetch (请求)、sync (后台同步)、push (推送)。</p>
+</blockquote>
+<pre><code class="hljs js">self.addEventListener(<span class="hljs-string">'activate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;
+  event.waitUntil(
+    caches.keys().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">keys</span>) </span>&#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all(
+        keys.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">key, i</span>) </span>&#123;
+          <span class="hljs-keyword">if</span> (key !== CACHE_VERSION) &#123;
+            <span class="hljs-keyword">return</span> caches.delete(keys[i])
+          &#125;
+        &#125;)
+      )
+    &#125;)
+  )
+&#125;)</code></pre>
+<h3 id="3-Service-Worker-缓存功能">3. Service Worker 缓存功能<a class="post-anchor" href="#3-Service-Worker-缓存功能"></a></h3><blockquote>
+<p>安装时，service worker 将我们指定的静态资源进行缓存（即预缓存）,与此同时，service worker 还可以拦截 HTTP 请求相应，做到动态缓存</p>
+</blockquote>
+<pre><code class="hljs js">self.addEventListener(<span class="hljs-string">'fetch'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;
+  event.respondWith(
+    caches.match(event.request).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) </span>&#123;
+      <span class="hljs-keyword">if</span> (response) &#123;
+        <span class="hljs-keyword">return</span> response
+      &#125;
+      <span class="hljs-keyword">var</span> requestToCache = event.request.clone()
+      <span class="hljs-keyword">return</span> fetch(requestToCache).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) </span>&#123;
+        <span class="hljs-keyword">if</span> (!response || response.status !== <span class="hljs-number">200</span>) &#123;
+          <span class="hljs-keyword">return</span> response
+        &#125;
+        <span class="hljs-keyword">var</span> responseToCache = response.clone()
+        caches.open(CACHE_VERSION).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cache</span>) </span>&#123;
+          cache.put(requestToCache, responseToCache)
+        &#125;)
+        <span class="hljs-keyword">return</span> response
+      &#125;)
+    &#125;)
+  )
+&#125;)</code></pre>
+<h4 id="PWA-添加横幅，增加用户使用率">PWA 添加横幅，增加用户使用率<a class="post-anchor" href="#PWA-添加横幅，增加用户使用率"></a></h4><ol>
+<li><a href="https://lavas.baidu.com/doc/engage-retain-users/add-to-home-screen/app-install-banners" rel="external nofollow noopener noreferrer" target="_blank">https://lavas.baidu.com/doc/engage-retain-users/add-to-home-screen/app-install-banners</a></li>
+<li><a href="https://github.com/electron-react-boilerplate/electron-react-boilerplate" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/electron-react-boilerplate/electron-react-boilerplate</a></li>
+</ol>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2021021528410/">模拟实现原型链继承</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020103023020/">Flex弹性布局</a>
+        
+    </div>
+  </div>
+
+  
+  <div class="google-ads">
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-9618079338040236" data-ad-slot="8288106873"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://blog.utone.xyz">Utone</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://blog.utone.xyz/202102124606/">https://blog.utone.xyz/202102124606/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://blog.utone.xyz">Utone</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://blog.utone.xyz">Utone</a> Powered by <a href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" rel="external nofollow noopener noreferrer" target="_blank">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= theme.gtm_id %>" height="0" width="0" style="display:none;visibility:hidden">
+                </iframe></noscript>
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"FjXColpwTL0BsrjJIN8Pmnn0-gzGzoHsz\",\"API_KEY\":\"Ar7tucPRn3KV7UOidQxESoys\"},\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"13728585\",\"access_token\":\"21.7db096dd216693971c38906559dffcfa.2592000.1579318074.2888690973-16666326\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    ;(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-9618079338040236',
+    enable_page_level_ads: true
+  })
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

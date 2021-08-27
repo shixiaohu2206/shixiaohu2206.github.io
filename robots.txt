@@ -1,0 +1,4 @@
+User-agent: * 
+Allow: /
+Sitemap: blog.utone.xyz/sitemap.xml
+Sitemap: blog.utone.xyz/baidusitemap.xml

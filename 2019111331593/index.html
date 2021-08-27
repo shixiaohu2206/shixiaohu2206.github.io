@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <script>
+  ;(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-WJ7P5KL')
+</script> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> <meta name="baidu-site-verification" content="vvVgSQUzPU"><meta name="google-site-verification" content="VQowHv5lAVVWJxjKI9bnAWT7NGdOrfS5KnLF07-B7w0"><meta name="baidu_union_verify" content="e41bcda632ad60427602fc274753bb7f">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Utone,虎虎,博客,个人,utone">
+    <meta name="description" content="Utone|虎虎|博客|个人|utone">
+    
+    <title>
+      优雅处理 async/await 异常 - Utone
+    </title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-catch"><span class="toc-text">try catch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go-Lang"><span class="toc-text">Go Lang</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#await-to-js"><span class="toc-text">await-to-js</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search">
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg">
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class>
+          首页
+        </a>
+        
+        <a href="/archives" class>
+          归档
+        </a>
+        
+        <a href="/categories" class>
+          分类
+        </a>
+        
+        <a href="/tags" class>
+          标签
+        </a>
+        
+        <a href="/friends" class>
+          友链
+        </a>
+        
+        <a href="/about" class>
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Utone</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Utone</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class>
+            首页
+          </a>
+          
+          <a href="/archives" class>
+            归档
+          </a>
+          
+          <a href="/categories" class>
+            分类
+          </a>
+          
+          <a href="/tags" class>
+            标签
+          </a>
+          
+          <a href="/friends" class>
+            友链
+          </a>
+          
+          <a href="/about" class>
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shixiaohu2206" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.facebook.com/shi.xiaohu.5" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-facebook"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/shi_xiaohu/" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">优雅处理 async/await 异常</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/11/13</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2019111331593/" data-flag-title="优雅处理 async/await 异常">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Code">Code</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/async">async</a>
+                  
+                
+                  
+                    <a href="/tags/await">await</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h2 id="前言">前言<a class="post-anchor" href="#前言"></a></h2><p><code>async/await</code> 是 ES7 中的新特性，方便开发者以同步代码书写异步调用，避免回调地狱</p>
+<p>但是对于这样的代码，怎样处理异常？</p>
+<p>目前从网上查询的解决方法，大致有两种</p>
+<h2 id="try-catch">try catch<a class="post-anchor" href="#try-catch"></a></h2><p>try catch 捕获是非常常见捕获同步代码异常的方法，它可以轻松捕捉到<code>async/await</code> 的异常</p>
+<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-comment">// 通过try catch捕获异常调用的异常</span>
+  <span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> Api.get() <span class="hljs-comment">// 同步写法、异步调用</span>
+    <span class="hljs-keyword">if</span> (!data) &#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'no data'</span>)
+    &#125;
+  &#125; <span class="hljs-keyword">catch</span> (err) &#123;
+    <span class="hljs-built_in">console</span>.log(err)
+  &#125;
+&#125;</code></pre>
+<p>假如一个 async 声明的函数中有多次的异步调用，那就需要在每一个在每个异步调用的代码块上，都包一层 try catch，注意，是每一个</p>
+<p>当然也可以在最外层包一层 try catch，但是这样一旦有异常抛出，异常代码下方代码就不会再执行，会造成代码逻辑上的错误</p>
+<p>以上， 这明显就有悖于我们用 <code>async/await</code> 的初衷：使代码更加简洁</p>
+<h2 id="Go-Lang">Go Lang<a class="post-anchor" href="#Go-Lang"></a></h2><p>从 Go 语言处理异常得到的灵感。 Go 语言在执行一段代码后，会赋值两个变量</p>
+<p>一个是正常运行结果，一个是运行时的异常</p>
+<p>若异常为 null，就没有错误需要处理</p>
+<pre><code class="hljs go">f, err := os.Open(<span class="hljs-string">"filename.txt"</span>)
+
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123; <span class="hljs-keyword">return</span> err &#125;</code></pre>
+<h2 id="await-to-js">await-to-js<a class="post-anchor" href="#await-to-js"></a></h2><p><code>async/await</code>实际上是 promise 的语法糖。再从上述 Go 语言处理异常的灵感，得出另一种解决方案</p>
+<p>使用一个包装函数，包装函数中执行 Promise 代码</p>
+<ul>
+<li><p>若正常则返回结果，同时返回的 <code>err</code> 对象 为 <code>null</code></p>
+</li>
+<li><p>若运行中有异常抛出，用 <code>catch</code> 捕获异常，返回的 <code>err</code> 对象为捕获到的异常</p>
+</li>
+</ul>
+<p>再使用 ES6 的<code>解构赋值</code>，可以非常方便的实现上述思路</p>
+<pre><code class="hljs js"><span class="hljs-comment">/**
+ * 优雅捕获async/await异常 (简洁版await-to-js)
+ *
+ * @param &#123;*&#125; promise
+ */</span>
+<span class="hljs-keyword">const</span> to = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">promise</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> promise.then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> [<span class="hljs-literal">null</span>, data]).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> [err, <span class="hljs-literal">undefined</span>])
+&#125;
+
+<span class="hljs-comment">// 解构赋值</span>
+<span class="hljs-keyword">const</span> [data, err] = <span class="hljs-keyword">await</span> to(func())
+
+<span class="hljs-comment">// err有值，说明有异常</span>
+<span class="hljs-keyword">if</span> (err) &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'func 有异常抛出'</span>)
+&#125;</code></pre>
+<blockquote>
+<p>推荐使用 <code>scopsy</code> 贡献的 <a href="https://github.com/scopsy/await-to-js" rel="external nofollow noopener noreferrer" target="_blank">await-to-js</a> npm 包</p>
+</blockquote>
+<pre><code class="hljs typescript"><span class="hljs-comment">/**
+ * @param &#123; Promise &#125; promise
+ * @param &#123; Object= &#125; errorExt - Additional Information you can pass to the err object
+ * @return &#123; Promise &#125;
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">to</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">U</span> = <span class="hljs-title">Error</span>&gt;(<span class="hljs-params">promise: <span class="hljs-built_in">Promise</span>&lt;T&gt;, errorExt?: object</span>): <span class="hljs-title">Promise</span>&lt;[<span class="hljs-title">U</span> | <span class="hljs-title">null</span>, <span class="hljs-title">T</span> | <span class="hljs-title">undefined</span>]&gt; </span>&#123;
+  <span class="hljs-keyword">return</span> promise
+    .then&lt;[<span class="hljs-literal">null</span>, T]&gt;<span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">data: T</span>) =&gt; [<span class="hljs-literal">null</span>, data]</span>)
+    .<span class="hljs-params">catch</span>&lt;[<span class="hljs-params">U</span>, <span class="hljs-params">undefined</span>]&gt;(<span class="hljs-params">(<span class="hljs-params">err: U</span>) =&gt; &#123;
+      <span class="hljs-keyword">if</span> (<span class="hljs-params">errorExt</span>) &#123;
+        <span class="hljs-built_in">Object</span>.assign(<span class="hljs-params">err, errorExt</span>)
+      &#125;
+
+      <span class="hljs-keyword">return</span> [err, <span class="hljs-literal">undefined</span>]
+    &#125;</span>)
+&#125;
+
+<span class="hljs-params">export</span> <span class="hljs-params">default</span> <span class="hljs-params">to</span></span></code></pre>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/202004257415/">闭包</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2019111314005/">主题新增百度统计图表功能</a>
+        
+    </div>
+  </div>
+
+  
+  <div class="google-ads">
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-9618079338040236" data-ad-slot="8288106873"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://blog.utone.xyz">Utone</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://blog.utone.xyz/2019111331593/">https://blog.utone.xyz/2019111331593/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://blog.utone.xyz">Utone</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://blog.utone.xyz">Utone</a> Powered by <a href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" rel="external nofollow noopener noreferrer" target="_blank">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= theme.gtm_id %>" height="0" width="0" style="display:none;visibility:hidden">
+                </iframe></noscript>
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"FjXColpwTL0BsrjJIN8Pmnn0-gzGzoHsz\",\"API_KEY\":\"Ar7tucPRn3KV7UOidQxESoys\"},\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"13728585\",\"access_token\":\"21.7db096dd216693971c38906559dffcfa.2592000.1579318074.2888690973-16666326\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    ;(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-9618079338040236',
+    enable_page_level_ads: true
+  })
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

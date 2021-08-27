@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <script>
+  ;(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-WJ7P5KL')
+</script> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> <meta name="baidu-site-verification" content="vvVgSQUzPU"><meta name="google-site-verification" content="VQowHv5lAVVWJxjKI9bnAWT7NGdOrfS5KnLF07-B7w0"><meta name="baidu_union_verify" content="e41bcda632ad60427602fc274753bb7f">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Utone,虎虎,博客,个人,utone">
+    <meta name="description" content="Utone|虎虎|博客|个人|utone">
+    
+    <title>
+      使用Travis CI持续集成Hexo博客 - Utone
+    </title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#登陆-Travis-CI"><span class="toc-text">登陆 Travis CI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建配置文件"><span class="toc-text">新建配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取-token"><span class="toc-text">获取 token</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Github-获取-Access-Token"><span class="toc-text">Github 获取 Access Token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Coding-获取项目令牌"><span class="toc-text">Coding 获取项目令牌</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Travis-CI-新增环境变量"><span class="toc-text">Travis CI 新增环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完成部署"><span class="toc-text">完成部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感谢-Travis-CI"><span class="toc-text">感谢 Travis CI</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search">
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg">
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class>
+          首页
+        </a>
+        
+        <a href="/archives" class>
+          归档
+        </a>
+        
+        <a href="/categories" class>
+          分类
+        </a>
+        
+        <a href="/tags" class>
+          标签
+        </a>
+        
+        <a href="/friends" class>
+          友链
+        </a>
+        
+        <a href="/about" class>
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Utone</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Utone</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class>
+            首页
+          </a>
+          
+          <a href="/archives" class>
+            归档
+          </a>
+          
+          <a href="/categories" class>
+            分类
+          </a>
+          
+          <a href="/tags" class>
+            标签
+          </a>
+          
+          <a href="/friends" class>
+            友链
+          </a>
+          
+          <a href="/about" class>
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shixiaohu2206" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.facebook.com/shi.xiaohu.5" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-facebook"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/shi_xiaohu/" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">使用Travis CI持续集成Hexo博客</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/09/10</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2019091039107/" data-flag-title="使用Travis CI持续集成Hexo博客">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Code">Code</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/TravisCI">TravisCI</a>
+                  
+                
+                  
+                    <a href="/tags/Hexo">Hexo</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <a href="/2019091039107/ci.png" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/ci.png" alt="媳妇最美"></a>
+<blockquote>
+<p>Travis CI 教程和讲解，可以查看阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html" rel="external nofollow noopener noreferrer" target="_blank">《持续集成服务 Travis CI 教程》</a></p>
+</blockquote>
+<h2 id="前言">前言<a class="post-anchor" href="#前言"></a></h2><p>使用 Travis CI 的原因，也很简单，就是在写完博客的时候，不希望在本地构建、发布，于是想到能不能在远端构建发布?</p>
+<p>Travis CI 正好满足了这个要求，Github 上开源的仓库，都可以使用它进行持续集成</p>
+<h2 id="需求">需求<a class="post-anchor" href="#需求"></a></h2><ul>
+<li>上传 Hexo 博客源码，自动部署到相应的静态 Pages 仓库上</li>
+<li>本站对国内、国外做了 CNAME 区分，国内访问 Coding Pages，国外访问 Github Pages（有利于百度 SEO，因为百度不收录 Github Pages），这样的话，Hexo 构建发布时需要发布到两个静态 Pages 仓库上</li>
+</ul>
+<h2 id="登陆-Travis-CI">登陆 Travis CI<a class="post-anchor" href="#登陆-Travis-CI"></a></h2><p>使用 Github 账户登陆 Travis CI，登陆完成后，打开设置，找到 Hexo 源码仓库，打开开关，这样 Travis CI 就可以监听到这个仓库的变动</p>
+<p>完成以上操作，接下来就是编写 Travis CI 配置文件了</p>
+<a href="/2019091039107/3.jpg" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/3.jpg" alt="媳妇最美"></a>
+<h2 id="新建配置文件">新建配置文件<a class="post-anchor" href="#新建配置文件"></a></h2><ul>
+<li>在 Hexo 项目根目录新建<code>.travis.yml</code></li>
+<li>字段名定义都很清晰，就是将每次部署命令，写在配置文件中，Travis CI 检测到仓库变动后， 会去读取<code>.travis.yml</code>命令，一步一步执行，直到部署成功</li>
+</ul>
+<pre><code class="hljs yml"><span class="hljs-comment"># 语言</span>
+<span class="hljs-attr">language:</span> <span class="hljs-string">node_js</span>
+<span class="hljs-comment"># node版本</span>
+<span class="hljs-attr">node_js:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">8</span>
+<span class="hljs-comment"># 指定缓存模块</span>
+<span class="hljs-attr">cache:</span>
+  <span class="hljs-attr">directories:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">node_modules</span>
+<span class="hljs-comment"># 监听分支</span>
+<span class="hljs-attr">branches:</span>
+  <span class="hljs-attr">only:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">master</span>
+<span class="hljs-comment"># 下载主题</span>
+<span class="hljs-attr">before_install:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">clone</span> <span class="hljs-string">https://github.com/shixiaohu2206/hexo-theme-huhu.git</span> <span class="hljs-string">themes/huhu</span>
+<span class="hljs-attr">install:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">npm</span> <span class="hljs-string">install</span>
+<span class="hljs-attr">script:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span> <span class="hljs-string">clean</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span> <span class="hljs-string">generate</span>
+<span class="hljs-attr">after_script:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-string">user.name</span> <span class="hljs-string">"Utone"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-string">user.email</span> <span class="hljs-string">"asjdr123@163.com"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">sed</span> <span class="hljs-string">-i</span> <span class="hljs-string">"s/&#123;GITHUB_TOKEN&#125;/$&#123;GITHUB_TOKEN&#125;/g"</span> <span class="hljs-string">./_config.yml</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">sed</span> <span class="hljs-string">-i</span> <span class="hljs-string">"s/&#123;TENCENT_TOKEN&#125;/$&#123;TENCENT_TOKEN&#125;/g"</span> <span class="hljs-string">./_config.yml</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span> <span class="hljs-string">deploy</span>
+<span class="hljs-comment"># 通知</span>
+<span class="hljs-attr">notifications:</span>
+  <span class="hljs-attr">email:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">asjdr123@163.com</span>
+  <span class="hljs-attr">on_success:</span> <span class="hljs-string">change</span>
+  <span class="hljs-attr">on_failure:</span> <span class="hljs-string">always</span></code></pre>
+<h2 id="获取-token">获取 token<a class="post-anchor" href="#获取-token"></a></h2><blockquote>
+<p>Travis CI 构建部署时是没有权限来 push 代码的，所以这里用 Token 来 push 代码<br>需要 https 格式 git 地址</p>
+</blockquote>
+<p>Github 的 Personal access tokens 不需要<code>&lt;token-name&gt;</code>，直接使用 token 即可</p>
+<pre><code class="hljs bash">git push https://&lt;token&gt;@giturl</code></pre>
+<p>Coding 的项目令牌，需要<code>&lt;token-name&gt;</code></p>
+<pre><code class="hljs bash">git push https://&lt;token-name&gt;:&lt;token&gt;@giturl</code></pre>
+<h3 id="Github-获取-Access-Token">Github 获取 Access Token<a class="post-anchor" href="#Github-获取-Access-Token"></a></h3><p>新建一个 Personal access tokens，成功后，记录下来，Github 的 Access Token 只会显示一次，后续就无法查看</p>
+<a href="/2019091039107/1.jpg" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/1.jpg" alt="媳妇最美"></a>
+<h3 id="Coding-获取项目令牌">Coding 获取项目令牌<a class="post-anchor" href="#Coding-获取项目令牌"></a></h3><p>需要将<code>推送至代码仓库</code>勾选上</p>
+<a href="/2019091039107/2.png" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/2.png" alt="媳妇最美"></a>
+<p>确认新增后，点击查看密码，记录<code>令牌用户名</code>、<code>令牌密码 (token)</code></p>
+<a href="/2019091039107/4.png" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/4.png" alt="媳妇最美"></a>
+<h2 id="Travis-CI-新增环境变量">Travis CI 新增环境变量<a class="post-anchor" href="#Travis-CI-新增环境变量"></a></h2><p>token 属于敏感数据，一定不能暴露在开源仓库中</p>
+<p>所以我们需要在 Travis CI 新增环境变量（对外不可见），这样构建时，用环境变量来替换 hexo 的配置文件中占位符，再来执行<code>hexo d</code></p>
+<p>Hexo 源码根目录下<code>_config.yml</code>，修改<code>deploy</code>配置</p>
+<pre><code class="hljs yml"><span class="hljs-comment"># Deployment</span>
+<span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span>
+<span class="hljs-attr">deploy:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>
+    <span class="hljs-attr">repository:</span> <span class="hljs-string">https://&#123;GITHUB_TOKEN&#125;@giturl</span>
+    <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>
+    <span class="hljs-attr">repository:</span> <span class="hljs-string">https://&#123;TENCENT_USERNAME&#125;:&#123;TENCENT_TOKEN&#125;@giturl</span>
+    <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span></code></pre>
+<p>Travis CI 新增环境变量</p>
+<p>新增 NAME 与<code>deploy</code>配置中占位符<code>GITHUB_TOKEN</code>保持一致，将获取的 token，对应填入，点击保存</p>
+<a href="/2019091039107/5.png" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/5.png" alt="媳妇最美"></a>
+<p>修改<code>.travis.yml</code>，用<code>sed</code>命令，将上述保存的环境变量替换占位符</p>
+<pre><code class="hljs yml"><span class="hljs-attr">after_script:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-string">user.name</span> <span class="hljs-string">"Utone"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-string">user.email</span> <span class="hljs-string">"asjdr123@163.com"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">sed</span> <span class="hljs-string">-i</span> <span class="hljs-string">"s/&#123;GITHUB_TOKEN&#125;/$&#123;GITHUB_TOKEN&#125;/g"</span> <span class="hljs-string">./_config.yml</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">sed</span> <span class="hljs-string">-i</span> <span class="hljs-string">"s/&#123;TENCENT_TOKEN&#125;/$&#123;TENCENT_TOKEN&#125;/g"</span> <span class="hljs-string">./_config.yml</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span> <span class="hljs-string">deploy</span></code></pre>
+<h2 id="完成部署">完成部署<a class="post-anchor" href="#完成部署"></a></h2><p>终于不用在本地执行<code>hexo deploy</code>了，写完博文，直接 push 代码即可</p>
+<a href="/2019091039107/6.png" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/6.png" alt="媳妇最美"></a>
+<p>Travis CI 部署有可能会失败，可以查看<code>Job log</code>查看运行日志</p>
+<h2 id="感谢-Travis-CI">感谢 Travis CI<a class="post-anchor" href="#感谢-Travis-CI"></a></h2><p>Travis CI 专为开源项目做远端持续集成，非常感谢</p>
+<a href="/2019091039107/7.jpg" data-caption="媳妇最美" data-fancybox="images"><img src="/2019091039107/7.jpg" alt="媳妇最美"></a>
+<p>从<code>Travis CI</code>官网搬来的团队合影（侵删）</p>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/201911012681/">docker及docker-compose 安装部署记录</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2019083151629/">Hexo博客添加Swiftype站内搜索</a>
+        
+    </div>
+  </div>
+
+  
+  <div class="google-ads">
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-9618079338040236" data-ad-slot="8288106873"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://blog.utone.xyz">Utone</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://blog.utone.xyz/2019091039107/">https://blog.utone.xyz/2019091039107/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://blog.utone.xyz">Utone</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://blog.utone.xyz">Utone</a> Powered by <a href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" rel="external nofollow noopener noreferrer" target="_blank">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= theme.gtm_id %>" height="0" width="0" style="display:none;visibility:hidden">
+                </iframe></noscript>
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"FjXColpwTL0BsrjJIN8Pmnn0-gzGzoHsz\",\"API_KEY\":\"Ar7tucPRn3KV7UOidQxESoys\"},\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"13728585\",\"access_token\":\"21.7db096dd216693971c38906559dffcfa.2592000.1579318074.2888690973-16666326\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    ;(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-9618079338040236',
+    enable_page_level_ads: true
+  })
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

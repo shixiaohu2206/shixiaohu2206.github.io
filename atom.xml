@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Utone</title>
+  
+  <subtitle>虎虎</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.utone.xyz/"/>
+  <updated>2021-08-27T15:25:26.383Z</updated>
+  <id>https://blog.utone.xyz/</id>
+  
+  <author>
+    <name>Utone</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高亮字符</title>
+    <link href="https://blog.utone.xyz//2021082717115/"/>
+    <id>https://blog.utone.xyz//2021082717115/</id>
+    <published>2021-08-27T15:13:16.000Z</published>
+    <updated>2021-08-27T15:25:26.383Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;酒店搜索联想下拉框，有一个高亮字符的需求，一个字条，对应多个高亮字符&lt;/p&gt;
+&lt;p&gt;eg: 上海海景房&lt;br&gt;高亮词条为&amp;lt;海景&amp;gt;&amp;lt;海景房&amp;gt; =&amp;gt; 上海&lt;span&gt;海景房&lt;/span&gt;&lt;br&gt;&lt;span&gt;标签不嵌套，取高并集加&lt;span&gt;标签&lt;/
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现instanceof</title>
+    <link href="https://blog.utone.xyz//2021061957428/"/>
+    <id>https://blog.utone.xyz//2021061957428/</id>
+    <published>2021-06-19T13:54:53.000Z</published>
+    <updated>2021-07-30T14:06:10.482Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;定义&quot;&gt;定义&lt;a class=&quot;post-anchor&quot; href=&quot;#定义&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。&lt;/p&gt;
+&lt;h3 id=&quot;实现&quot;&gt;实现&lt;a class=&quot;post-anchor&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现call、apply</title>
+    <link href="https://blog.utone.xyz//2021061359111/"/>
+    <id>https://blog.utone.xyz//2021061359111/</id>
+    <published>2021-06-13T13:54:53.000Z</published>
+    <updated>2021-07-30T14:06:10.479Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;介绍&quot;&gt;介绍&lt;a class=&quot;post-anchor&quot; href=&quot;#介绍&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;call() 方法在使用一个指定的 this 值和若干个指定的参数值的前提下调用某个函数或方法。&lt;/p&gt;
+&lt;h3 id=&quot;实现&quot;&gt;实现&lt;a class=&quot;pos
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>webpack</title>
+    <link href="https://blog.utone.xyz//2021051715317/"/>
+    <id>https://blog.utone.xyz//2021051715317/</id>
+    <published>2021-05-17T13:57:20.000Z</published>
+    <updated>2021-07-30T14:06:10.468Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;介绍&quot;&gt;介绍&lt;a class=&quot;post-anchor&quot; href=&quot;#介绍&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Webpack 是一个打包模块化 JavaScript 工具&lt;/p&gt;
+&lt;h3 id=&quot;webpack-与-gulp-的异同&quot;&gt;webpack 与 gulp 的异
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>React Diff</title>
+    <link href="https://blog.utone.xyz//2021051711845/"/>
+    <id>https://blog.utone.xyz//2021051711845/</id>
+    <published>2021-05-17T13:57:20.000Z</published>
+    <updated>2021-07-30T14:06:10.466Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Virtour-Dom&quot;&gt;Virtour Dom&lt;a class=&quot;post-anchor&quot; href=&quot;#Virtour-Dom&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;本质上是 JavaScript 对象，这个对象就是更加轻量级的对 DOM 的描述&lt;/p&gt;
+&lt;h3 id=&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>React Context</title>
+    <link href="https://blog.utone.xyz//2021051221164/"/>
+    <id>https://blog.utone.xyz//2021051221164/</id>
+    <published>2021-05-12T13:57:20.000Z</published>
+    <updated>2021-07-30T14:06:10.464Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;介绍&quot;&gt;介绍&lt;a class=&quot;post-anchor&quot; href=&quot;#介绍&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法&lt;/p&gt;
+&lt;p&gt;何时使用:&lt;/p&gt;
+&lt;p&gt;Context 主要应用
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现原型链继承</title>
+    <link href="https://blog.utone.xyz//2021021528410/"/>
+    <id>https://blog.utone.xyz//2021021528410/</id>
+    <published>2021-02-14T16:00:00.000Z</published>
+    <updated>2021-07-30T14:05:59.187Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;介绍&quot;&gt;介绍&lt;a class=&quot;post-anchor&quot; href=&quot;#介绍&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;只有函数对象才有属性&lt;code&gt;prototype&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;每个实例对象都有一个私有属性&lt;code&gt;__proto__&lt;/code&gt;，指向它
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="JavaScript" scheme="https://blog.utone.xyz/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PWA</title>
+    <link href="https://blog.utone.xyz//202102124606/"/>
+    <id>https://blog.utone.xyz//202102124606/</id>
+    <published>2021-02-12T13:57:20.000Z</published>
+    <updated>2021-07-30T14:06:10.463Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;PWA&quot;&gt;PWA&lt;a class=&quot;post-anchor&quot; href=&quot;#PWA&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;1-介绍&quot;&gt;1. 介绍&lt;a class=&quot;post-anchor&quot; href=&quot;#1-介绍&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Flex弹性布局</title>
+    <link href="https://blog.utone.xyz//2020103023020/"/>
+    <id>https://blog.utone.xyz//2020103023020/</id>
+    <published>2020-10-30T13:56:42.000Z</published>
+    <updated>2021-07-30T14:06:10.460Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;说明&quot;&gt;说明&lt;a class=&quot;post-anchor&quot; href=&quot;#说明&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。&lt;/p&gt;
+&lt;h3 id=&quot;容器属性&quot;&gt;容器属性&lt;a class
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Event-Loop事件循环</title>
+    <link href="https://blog.utone.xyz//2020103016638/"/>
+    <id>https://blog.utone.xyz//2020103016638/</id>
+    <published>2020-10-30T13:56:42.000Z</published>
+    <updated>2021-07-30T14:06:10.457Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Event-Loop&quot;&gt;Event Loop&lt;a class=&quot;post-anchor&quot; href=&quot;#Event-Loop&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;为了协调事件（event），用户交互（user interaction），脚本（script），渲染（rende
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>圣杯、双飞翼布局</title>
+    <link href="https://blog.utone.xyz//2020093063178/"/>
+    <id>https://blog.utone.xyz//2020093063178/</id>
+    <published>2020-09-30T13:56:42.000Z</published>
+    <updated>2021-07-30T14:06:10.472Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;要点&quot;&gt;要点&lt;a class=&quot;post-anchor&quot; href=&quot;#要点&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;两侧宽度固定，中间宽度自适应&lt;/li&gt;
+&lt;li&gt;中间部分在 DOM 结构上优先，以便先行渲染&lt;/li&gt;
+&lt;li&gt;允许三列中的任意一列成为最高列&lt;/l
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现throttle节流</title>
+    <link href="https://blog.utone.xyz//2020081716539/"/>
+    <id>https://blog.utone.xyz//2020081716539/</id>
+    <published>2020-08-17T13:54:53.000Z</published>
+    <updated>2021-07-30T14:06:10.486Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;throttle-节流&quot;&gt;throttle 节流&lt;a class=&quot;post-anchor&quot; href=&quot;#throttle-节流&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;执行触发事件，每隔一段时间后，就触发一次真实函数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;场景&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现new</title>
+    <link href="https://blog.utone.xyz//2020071721804/"/>
+    <id>https://blog.utone.xyz//2020071721804/</id>
+    <published>2020-07-17T13:54:53.000Z</published>
+    <updated>2021-07-30T14:06:10.484Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;介绍&quot;&gt;介绍&lt;a class=&quot;post-anchor&quot; href=&quot;#介绍&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;new 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象类型之一&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可以访问构造函数中的属性&lt;/li&gt;
+&lt;li&gt;可以访问构
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现bind</title>
+    <link href="https://blog.utone.xyz//2020063062877/"/>
+    <id>https://blog.utone.xyz//2020063062877/</id>
+    <published>2020-06-30T13:52:29.000Z</published>
+    <updated>2021-07-30T14:06:10.478Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;MDN-描述&quot;&gt;MDN 描述&lt;a class=&quot;post-anchor&quot; href=&quot;#MDN-描述&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现debounce防抖</title>
+    <link href="https://blog.utone.xyz//2020061760189/"/>
+    <id>https://blog.utone.xyz//2020061760189/</id>
+    <published>2020-06-17T13:54:53.000Z</published>
+    <updated>2021-07-30T14:06:10.481Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;debounce-防抖&quot;&gt;debounce 防抖&lt;a class=&quot;post-anchor&quot; href=&quot;#debounce-防抖&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;触发事件&lt;code&gt;N&lt;/code&gt;时间后，才会真正执行绑定事件的函数&lt;/li&gt;
+&lt;li&gt;th
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模拟实现ajax</title>
+    <link href="https://blog.utone.xyz//2020051334921/"/>
+    <id>https://blog.utone.xyz//2020051334921/</id>
+    <published>2020-05-13T13:53:37.000Z</published>
+    <updated>2021-07-30T14:06:10.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;AJAX&quot;&gt;AJAX&lt;a class=&quot;post-anchor&quot; href=&quot;#AJAX&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;AJAX（Asynchronous JavaScript And XML ）是一种使用 XMLHttpRequest 技术构建更复杂，动态的网页的编
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>闭包</title>
+    <link href="https://blog.utone.xyz//202004257415/"/>
+    <id>https://blog.utone.xyz//202004257415/</id>
+    <published>2020-04-25T13:56:11.000Z</published>
+    <updated>2021-07-30T14:06:10.490Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;定义&quot;&gt;定义&lt;a class=&quot;post-anchor&quot; href=&quot;#定义&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;能够访问另一个函数作用域变量的函数&lt;/p&gt;
+&lt;p&gt;基本类型的值一般存在栈内存中&lt;br&gt;引用类型的值一般存在堆内存中&lt;/p&gt;
+&lt;h3 id=&quot;优点&quot;&gt;优点&lt;a c
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>优雅处理 async/await 异常</title>
+    <link href="https://blog.utone.xyz//2019111331593/"/>
+    <id>https://blog.utone.xyz//2019111331593/</id>
+    <published>2019-11-13T11:45:04.000Z</published>
+    <updated>2019-11-17T11:28:24.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;a class=&quot;post-anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;async/await&lt;/code&gt; 是 ES7 中的新特性，方便开发者以同步代码书写异步调用，避免回调地狱&lt;/p&gt;
+&lt;p&gt;但是对于这样的代码，怎样
+      
+    
+    </summary>
+    
+      <category term="Code" scheme="https://blog.utone.xyz/categories/Code/"/>
+    
+    
+      <category term="async" scheme="https://blog.utone.xyz/tags/async/"/>
+    
+      <category term="await" scheme="https://blog.utone.xyz/tags/await/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主题新增百度统计图表功能</title>
+    <link href="https://blog.utone.xyz//2019111314005/"/>
+    <id>https://blog.utone.xyz//2019111314005/</id>
+    <published>2019-11-13T03:25:48.000Z</published>
+    <updated>2019-11-17T11:28:24.161Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a href=&quot;/2019111314005/1.jpg&quot; data-caption=&quot;Chart.js&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/2019111314005/1.jpg&quot; alt=&quot;Chart.js&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;前言
+      
+    
+    </summary>
+    
+      <category term="Usage" scheme="https://blog.utone.xyz/categories/Usage/"/>
+    
+    
+      <category term="Chart" scheme="https://blog.utone.xyz/tags/Chart/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>主题使用文档</title>
+    <link href="https://blog.utone.xyz//2019110815531/"/>
+    <id>https://blog.utone.xyz//2019110815531/</id>
+    <published>2019-11-08T11:16:35.000Z</published>
+    <updated>2019-11-17T11:28:24.158Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;/images/huhu.png&quot; data-caption=&quot;huhu&quot; data-fancybox=&quot;images&quot;&gt;&lt;img src=&quot;/images/huhu.png&quot; alt=&quot;huhu&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;a cl
+      
+    
+    </summary>
+    
+      <category term="Usage" scheme="https://blog.utone.xyz/categories/Usage/"/>
+    
+    
+      <category term="HEXO-THEME-HUHU" scheme="https://blog.utone.xyz/tags/HEXO-THEME-HUHU/"/>
+    
+  </entry>
+  
+</feed>

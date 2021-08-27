@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <script>
+  ;(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-WJ7P5KL')
+</script> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> <meta name="baidu-site-verification" content="vvVgSQUzPU"><meta name="google-site-verification" content="VQowHv5lAVVWJxjKI9bnAWT7NGdOrfS5KnLF07-B7w0"><meta name="baidu_union_verify" content="e41bcda632ad60427602fc274753bb7f">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Utone,虎虎,博客,个人,utone">
+    <meta name="description" content="Utone|虎虎|博客|个人|utone">
+    
+    <title>
+      H5与Native交互 - Utone
+    </title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍三种-APP-的开发模式"><span class="toc-text">介绍三种 APP 的开发模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native"><span class="toc-text">Native</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebAPP"><span class="toc-text">WebAPP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点-1"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点-1"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HybridAPP"><span class="toc-text">HybridAPP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点-2"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点-2"><span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Crocodile-框架中通信"><span class="toc-text">Crocodile 框架中通信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#初始化"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JS-调用"><span class="toc-text">JS 调用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4-版本前"><span class="toc-text">4.4 版本前</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4-版本后（包括）"><span class="toc-text">4.4 版本后（包括）</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search">
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg">
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class>
+          首页
+        </a>
+        
+        <a href="/archives" class>
+          归档
+        </a>
+        
+        <a href="/categories" class>
+          分类
+        </a>
+        
+        <a href="/tags" class>
+          标签
+        </a>
+        
+        <a href="/friends" class>
+          友链
+        </a>
+        
+        <a href="/about" class>
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Utone</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Utone</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class>
+            首页
+          </a>
+          
+          <a href="/archives" class>
+            归档
+          </a>
+          
+          <a href="/categories" class>
+            分类
+          </a>
+          
+          <a href="/tags" class>
+            标签
+          </a>
+          
+          <a href="/friends" class>
+            友链
+          </a>
+          
+          <a href="/about" class>
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shixiaohu2206" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.facebook.com/shi.xiaohu.5" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-facebook"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/shi_xiaohu/" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">H5与Native交互</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/04/15</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2019041543434/" data-flag-title="H5与Native交互">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Code">Code</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/JavaScript">JavaScript</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h3 id="介绍三种-APP-的开发模式">介绍三种 APP 的开发模式<a class="post-anchor" href="#介绍三种-APP-的开发模式"></a></h3><ul>
+<li>Native</li>
+<li>WebAPP</li>
+<li>HybridAPP</li>
+</ul>
+<h3 id="Native">Native<a class="post-anchor" href="#Native"></a></h3><h4 id="优点">优点<a class="post-anchor" href="#优点"></a></h4><ol>
+<li>原生应用。性能最好，交互体验有优势</li>
+<li>可以调用移动硬件设备的底层功能（摄像头、日历和地理位置等）</li>
+</ol>
+<h4 id="缺点">缺点<a class="post-anchor" href="#缺点"></a></h4><ol>
+<li>更新体验较差、需要用户手动更新。</li>
+<li>苹果商店发布流程繁琐</li>
+<li>使用不同的开发语言，所以开发、维护成本大</li>
+</ol>
+<a id="more"></a>
+<h3 id="WebAPP">WebAPP<a class="post-anchor" href="#WebAPP"></a></h3><h4 id="优点-1">优点<a class="post-anchor" href="#优点-1"></a></h4><ol>
+<li>开发成本低，效率快</li>
+<li>跨平台、升级维护简单，不受应用商店限制</li>
+<li>不需要用户下载使用，有浏览器即可访问</li>
+</ol>
+<h4 id="缺点-1">缺点<a class="post-anchor" href="#缺点-1"></a></h4><ol>
+<li>依赖网络，访问速度受限于终端网速。每次访问，消耗流量</li>
+<li>性能差，用户体验较差（因为需要去远端下载资源）</li>
+<li>无法调用移动硬件设备的底层功能（摄像头、日历和地理位置等）</li>
+</ol>
+<h3 id="HybridAPP">HybridAPP<a class="post-anchor" href="#HybridAPP"></a></h3><h4 id="优点-2">优点<a class="post-anchor" href="#优点-2"></a></h4><ol>
+<li>开发成本较低，效率较快,性能介于 Native 与 WebAPP 之间，可与 Nactive 媲美</li>
+<li>跨平台、实现多端展示同一个交互层</li>
+<li>可以调用移动硬件设备的底层功能（摄像头、日历和地理位置等）</li>
+</ol>
+<h4 id="缺点-2">缺点<a class="post-anchor" href="#缺点-2"></a></h4><ol>
+<li>用户需要在应用商店下载，发布流程繁琐</li>
+<li>团队中需要有懂 Web、IOS 开发的技术人员，双方需要配合工作</li>
+</ol>
+<h4 id="Crocodile-框架中通信">Crocodile 框架中通信<a class="post-anchor" href="#Crocodile-框架中通信"></a></h4><ol>
+<li>执行 webapck 打包 Hybrid 包时，将 vendor/bridge.js 文件打包至 crocodile.seed.js 中，在前端应用启动时，优先于其他脚本代码加载。</li>
+<li>当 Native 的 webview 加载完成后，调用 H5 的<code>web_view_finished_load</code>接口获取 Nacti 端的基本信息(版本、系统参数…)</li>
+</ol>
+<h5 id="初始化">初始化<a class="post-anchor" href="#初始化"></a></h5><pre><code class="hljs java">WebSettings webSettings = mWebView.getSettings();
+<span class="hljs-comment">//Android容器允许JS脚本</span>
+webSettings.setJavaScriptEnabled(<span class="hljs-keyword">true</span>);
+<span class="hljs-comment">//Android容器设置侨连对象</span>
+mWebView.addJavascriptInterface(getJSBridge(), <span class="hljs-string">"JSBridge"</span>);
+
+<span class="hljs-comment">//Android4.2版本以上，本地方法要加上注解@JavascriptInterface，否则会找不到方法。</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> Object <span class="hljs-title">getJSBridge</span><span class="hljs-params">()</span></span>&#123;
+    Object insertObj = <span class="hljs-keyword">new</span> Object()&#123;
+    	<span class="hljs-meta">@JavascriptInterface</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"foo"</span>;
+        &#125;
+
+        <span class="hljs-meta">@JavascriptInterface</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">foo2</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String param)</span></span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"foo2:"</span> + param;
+        &#125;
+
+    &#125;;
+    <span class="hljs-keyword">return</span> insertObj;
+&#125;</code></pre>
+<h5 id="JS-调用">JS 调用<a class="post-anchor" href="#JS-调用"></a></h5><pre><code class="hljs js"><span class="hljs-comment">//调用方法一</span>
+<span class="hljs-built_in">window</span>.JSBridge.foo() <span class="hljs-comment">//返回:'foo'</span>
+<span class="hljs-comment">//调用方法二</span>
+<span class="hljs-built_in">window</span>.JSBridge.foo2(<span class="hljs-string">'test'</span>) <span class="hljs-comment">//返回:'foo2:test'</span></code></pre>
+<h5 id="4-4-版本前">4.4 版本前<a class="post-anchor" href="#4-4-版本前"></a></h5><pre><code class="hljs java"><span class="hljs-comment">// mWebView = new WebView(this); //即当前webview对象</span>
+mWebView.loadUrl(<span class="hljs-string">"javascript: 方法名('参数,需要转为字符串')"</span>);
+
+<span class="hljs-comment">//ui线程中运行</span>
+ runOnUiThread(<span class="hljs-keyword">new</span> Runnable() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+            mWebView.loadUrl(<span class="hljs-string">"javascript: 方法名('参数,需要转为字符串')"</span>);
+            Toast.makeText(Activity名.<span class="hljs-keyword">this</span>, <span class="hljs-string">"调用方法..."</span>, Toast.LENGTH_SHORT).show();
+        &#125;
+&#125;);</code></pre>
+<h5 id="4-4-版本后（包括）">4.4 版本后（包括）<a class="post-anchor" href="#4-4-版本后（包括）"></a></h5><pre><code class="hljs java"><span class="hljs-comment">//异步执行JS代码,并获取返回值</span>
+mWebView.evaluateJavascript(<span class="hljs-string">"javascript: 方法名('参数,需要转为字符串')"</span>, <span class="hljs-keyword">new</span> ValueCallback() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceiveValue</span><span class="hljs-params">(String value)</span> </span>&#123;
+    		<span class="hljs-comment">//这里的value即为对应JS方法的返回值</span>
+        &#125;
+&#125;);</code></pre>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2019041516860/">Eslint 配置参数说明</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2019021449032/">函数防抖、函数节流</a>
+        
+    </div>
+  </div>
+
+  
+  <div class="google-ads">
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-9618079338040236" data-ad-slot="8288106873"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://blog.utone.xyz">Utone</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://blog.utone.xyz/2019041543434/">https://blog.utone.xyz/2019041543434/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://blog.utone.xyz">Utone</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://blog.utone.xyz">Utone</a> Powered by <a href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" rel="external nofollow noopener noreferrer" target="_blank">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= theme.gtm_id %>" height="0" width="0" style="display:none;visibility:hidden">
+                </iframe></noscript>
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"FjXColpwTL0BsrjJIN8Pmnn0-gzGzoHsz\",\"API_KEY\":\"Ar7tucPRn3KV7UOidQxESoys\"},\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"13728585\",\"access_token\":\"21.7db096dd216693971c38906559dffcfa.2592000.1579318074.2888690973-16666326\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    ;(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-9618079338040236',
+    enable_page_level_ads: true
+  })
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

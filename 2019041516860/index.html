@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <script>
+  ;(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-WJ7P5KL')
+</script> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> <meta name="baidu-site-verification" content="vvVgSQUzPU"><meta name="google-site-verification" content="VQowHv5lAVVWJxjKI9bnAWT7NGdOrfS5KnLF07-B7w0"><meta name="baidu_union_verify" content="e41bcda632ad60427602fc274753bb7f">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Utone,虎虎,博客,个人,utone">
+    <meta name="description" content="Utone|虎虎|博客|个人|utone">
+    
+    <title>
+      Eslint 配置参数说明 - Utone
+    </title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eslint-配置参数说明"><span class="toc-text">Eslint 配置参数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ESLint-常用配置"><span class="toc-text">ESLint 常用配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Best-Practices-最佳实践"><span class="toc-text">Best Practices 最佳实践</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Variables-变量声明"><span class="toc-text">Variables 变量声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nodejs-and-CommonJS-Node-js-CommonJS"><span class="toc-text">Nodejs and CommonJS Node.js,CommonJS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stylistic-Issues-风格指南"><span class="toc-text">Stylistic Issues 风格指南</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search">
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg">
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class>
+          首页
+        </a>
+        
+        <a href="/archives" class>
+          归档
+        </a>
+        
+        <a href="/categories" class>
+          分类
+        </a>
+        
+        <a href="/tags" class>
+          标签
+        </a>
+        
+        <a href="/friends" class>
+          友链
+        </a>
+        
+        <a href="/about" class>
+          关于
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Utone</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Utone</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class>
+            首页
+          </a>
+          
+          <a href="/archives" class>
+            归档
+          </a>
+          
+          <a href="/categories" class>
+            分类
+          </a>
+          
+          <a href="/tags" class>
+            标签
+          </a>
+          
+          <a href="/friends" class>
+            友链
+          </a>
+          
+          <a href="/about" class>
+            关于
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shixiaohu2206" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.facebook.com/shi.xiaohu.5" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-facebook"></span>
+            </a>
+            
+            <a href="https://www.instagram.com/shi_xiaohu/" target="_blank" rel="external nofollow noopener noreferrer">
+              <span class="iconfont icon-instagram"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">Eslint 配置参数说明</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/04/15</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2019041516860/" data-flag-title="Eslint 配置参数说明">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Code">Code</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/JavaScript">JavaScript</a>
+                  
+                
+                  
+                    <a href="/tags/Eslint">Eslint</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <h3 id="Eslint-配置参数说明">Eslint 配置参数说明<a class="post-anchor" href="#Eslint-配置参数说明"></a></h3><ul>
+<li>0 或’off’：关闭规则。</li>
+<li>1 或’warn’：打开规则，并且作为一个警告（并不会导致检查不通过）。</li>
+<li>2 或’error’：打开规则，并且作为一个错误 (退出码为 1，检查不通过)。</li>
+</ul>
+<h3 id="ESLint-常用配置">ESLint 常用配置<a class="post-anchor" href="#ESLint-常用配置"></a></h3><ul>
+<li>Possible Errors 可能的错误或逻辑错误</li>
+<li>no-cond-assign 禁止条件表达式中出现模棱两可的赋值操作符</li>
+<li>no-console 禁用 console</li>
+<li>no-constant-condition 禁止在条件中使用常量表达式</li>
+<li>no-debugger 禁用 debugger</li>
+<li>no-dupe-args 禁止 function 定义中出现重名参数</li>
+<li>no-dupe-keys 禁止对象字面量中出现重复的 key</li>
+<li>no-duplicate-case 禁止出现重复的 case 标签</li>
+<li>no-empty 禁止出现空语句块</li>
+<li>no-ex-assign 禁止对 catch 子句的参数重新赋值</li>
+<li>no-extra-boolean-cast 禁止不必要的布尔转换</li>
+<li>no-extra-parens 禁止不必要的括号</li>
+<li>no-extra-semi 禁止不必要的分号</li>
+<li>no-func-assign 禁止对 function 声明重新赋值</li>
+<li>no-inner-declarations 禁止在嵌套的块中出现变量声明或 function 声明</li>
+<li>no-irregular-whitespace 禁止在字符串和注释之外不规则的空白</li>
+<li>no-obj-calls 禁止把全局对象作为函数调用</li>
+<li>no-sparse-arrays 禁用稀疏数组</li>
+<li>no-prototype-builtins 禁止直接使用 Object.prototypes 的内置属性</li>
+<li>no-unexpected-multiline 禁止出现令人困惑的多行表达式</li>
+<li>no-unreachable 禁止在 return、throw、continue 和 break 语句之后出现不可达代码</li>
+<li>use-isnan 要求使用 isNaN() 检查 NaN</li>
+<li>valid-typeof 强制 typeof 表达式与有效的字符串进行比较</li>
+</ul>
+<h3 id="Best-Practices-最佳实践">Best Practices 最佳实践<a class="post-anchor" href="#Best-Practices-最佳实践"></a></h3><ul>
+<li>array-callback-return 强制数组方法的回调函数中有 return 语句</li>
+<li>block-scoped-var 强制把变量的使用限制在其定义的作用域范围内</li>
+<li>complexity 指定程序中允许的最大环路复杂度</li>
+<li>consistent-return 要求 return 语句要么总是指定返回的值，要么不指定</li>
+<li>curly 强制所有控制语句使用一致的括号风格</li>
+<li>default-case 要求 switch 语句中有 default 分支</li>
+<li>dot-location 强制在点号之前和之后一致的换行</li>
+<li>dot-notation 强制在任何允许的时候使用点号</li>
+<li>eqeqeq 要求使用 === 和 !==</li>
+<li>guard-for-in 要求 for-in 循环中有一个 if 语句</li>
+<li>no-alert 禁用 alert、confirm 和 prompt</li>
+<li>no-case-declarations 不允许在 case 子句中使用词法声明</li>
+<li>no-else-return 禁止 if 语句中有 return 之后有 else</li>
+<li>no-empty-function 禁止出现空函数</li>
+<li>no-eq-null 禁止在没有类型检查操作符的情况下与 null 进行比较</li>
+<li>no-eval 禁用 eval()</li>
+<li>no-extra-bind 禁止不必要的 .bind() 调用</li>
+<li>no-fallthrough 禁止 case 语句落空</li>
+<li>no-floating-decimal 禁止数字字面量中使用前导和末尾小数点</li>
+<li>no-implicit-coercion 禁止使用短符号进行类型转换</li>
+<li>no-implicit-globals 禁止在全局范围内使用 var 和命名的 function 声明</li>
+<li>no-invalid-this: 禁止 this 关键字出现在类和类对象之外</li>
+<li>no-lone-blocks 禁用不必要的嵌套块</li>
+<li>no-loop-func 禁止在循环中出现 function 声明和表达式</li>
+<li>no-magic-numbers 禁用魔术数字</li>
+<li>no-multi-spaces 禁止使用多个空格</li>
+<li>no-multi-str 禁止使用多行字符串</li>
+<li>no-new 禁止在非赋值或条件语句中使用 new 操作符</li>
+<li>no-new-func 禁止对 Function 对象使用 new 操作符</li>
+<li>no-new-wrappers 禁止对 String，Number 和 Boolean 使用 new 操作符</li>
+<li>no-param-reassign 不允许对 function 的参数进行重新赋值</li>
+<li>no-redeclare 禁止使用 var 多次声明同一变量</li>
+<li>no-return-assign 禁止在 return 语句中使用赋值语句</li>
+<li>no-script-url 禁止使用 javascript: url</li>
+<li>no-self-assign 禁止自我赋值</li>
+<li>no-self-compare 禁止自身比较</li>
+<li>no-sequences 禁用逗号操作符</li>
+<li>no-unmodified-loop-condition 禁用一成不变的循环条件</li>
+<li>no-unused-expressions 禁止出现未使用过的表达式</li>
+<li>no-useless-call 禁止不必要的 .call() 和 .apply()</li>
+<li>no-useless-concat 禁止不必要的字符串字面量或模板字面量的连接</li>
+<li>vars-on-top 要求所有的 var 声明出现在它们所在的作用域顶部</li>
+<li>Strict Mode 使用严格模式和严格模式指</li>
+<li>strict 要求或禁止使用严格模式指令</li>
+</ul>
+<h3 id="Variables-变量声明">Variables 变量声明<a class="post-anchor" href="#Variables-变量声明"></a></h3><ul>
+<li>init-declarations 要求或禁止 var 声明中的初始化</li>
+<li>no-catch-shadow 不允许 catch 子句的参数与外层作用域中的变量同名</li>
+<li>no-restricted-globals 禁用特定的全局变量</li>
+<li>no-shadow 禁止 var 声明 与外层作用域的变量同名</li>
+<li>no-undef 禁用未声明的变量，除非它们在 /global / 注释中被提到</li>
+<li>no-undef-init 禁止将变量初始化为 undefined</li>
+<li>no-unused-vars 禁止出现未使用过的变量</li>
+<li>no-use-before-define 不允许在变量定义之前使用它们</li>
+</ul>
+<h3 id="Nodejs-and-CommonJS-Node-js-CommonJS">Nodejs and CommonJS Node.js,CommonJS<a class="post-anchor" href="#Nodejs-and-CommonJS-Node-js-CommonJS"></a></h3><ul>
+<li>global-require 要求 require() 出现在顶层模块作用域中</li>
+<li>handle-callback-err 要求回调函数中有容错处理</li>
+<li>no-mixed-requires 禁止混合常规 var 声明和 require 调用</li>
+<li>no-new-require 禁止调用 require 时使用 new 操作符</li>
+<li>no-path-concat 禁止对 dirname 和 filename 进行字符串连接</li>
+<li>no-restricted-modules 禁用指定的通过 require 加载的模块</li>
+</ul>
+<h3 id="Stylistic-Issues-风格指南">Stylistic Issues 风格指南<a class="post-anchor" href="#Stylistic-Issues-风格指南"></a></h3><ul>
+<li>array-bracket-spacing 强制数组方括号中使用一致的空格</li>
+<li>block-spacing 强制在单行代码块中使用一致的空格</li>
+<li>brace-style 强制在代码块中使用一致的大括号风格</li>
+<li>camelcase 强制使用骆驼拼写法命名约定</li>
+<li>comma-spacing 强制在逗号前后使用一致的空格</li>
+<li>comma-style 强制使用一致的逗号风格</li>
+<li>computed-property-spacing 强制在计算的属性的方括号中使用一致的空格</li>
+<li>eol-last 强制文件末尾至少保留一行空行</li>
+<li>func-names 强制使用命名的 function 表达式</li>
+<li>func-style 强制一致地使用函数声明或函数表达式</li>
+<li>indent 强制使用一致的缩进</li>
+<li>jsx-quotes 强制在 JSX 属性中一致地使用双引号或单引号</li>
+<li>key-spacing 强制在对象字面量的属性中键和值之间使用一致的间距</li>
+<li>keyword-spacing 强制在关键字前后使用一致的空格</li>
+<li>linebreak-style 强制使用一致的换行风格</li>
+<li>lines-around-comment 要求在注释周围有空行</li>
+<li>max-depth 强制可嵌套的块的最大深度</li>
+<li>max-len 强制一行的最大长度</li>
+<li>max-lines 强制最大行数</li>
+<li>max-nested-callbacks 强制回调函数最大嵌套深度</li>
+<li>max-params 强制 function 定义中最多允许的参数数量</li>
+<li>max-statements 强制 function 块最多允许的的语句数量</li>
+<li>max-statements-per-line 强制每一行中所允许的最大语句数量</li>
+<li>new-cap 要求构造函数首字母大写</li>
+<li>new-parens 要求调用无参构造函数时有圆括号</li>
+<li>newline-after-var 要求或禁止 var 声明语句后有一行空行</li>
+<li>newline-before-return 要求 return 语句之前有一空行</li>
+<li>newline-per-chained-call 要求方法链中每个调用都有一个换行符</li>
+<li>no-array-constructor 禁止使用 Array 构造函数</li>
+<li>no-continue 禁用 continue 语句</li>
+<li>no-inline-comments 禁止在代码行后使用内联注释</li>
+<li>no-lonely-if 禁止 if 作为唯一的语句出现在 else 语句中</li>
+<li>no-mixed-spaces-and-tabs 不允许空格和 tab 混合缩进</li>
+<li>no-multiple-empty-lines 不允许多个空行</li>
+<li>no-negated-condition 不允许否定的表达式</li>
+<li>no-plusplus 禁止使用一元操作符 ++ 和 –</li>
+<li>no-spaced-func 禁止 function 标识符和括号之间出现空格</li>
+<li>no-ternary 不允许使用三元操作符</li>
+<li>no-trailing-spaces 禁用行尾空格</li>
+<li>no-whitespace-before-property 禁止属性前有空白</li>
+<li>object-curly-newline 强制花括号内换行符的一致性</li>
+<li>object-curly-spacing 强制在花括号中使用一致的空格</li>
+<li>object-property-newline 强制将对象的属性放在不同的行上</li>
+<li>one-var 强制函数中的变量要么一起声明要么分开声明</li>
+<li>one-var-declaration-per-line 要求或禁止在 var 声明周围换行</li>
+<li>operator-assignment 要求或禁止在可能的情况下要求使用简化的赋值操作符</li>
+<li>operator-linebreak 强制操作符使用一致的换行符</li>
+<li>quote-props 要求对象字面量属性名称用引号括起来</li>
+<li>quotes 强制使用一致的反勾号、双引号或单引号</li>
+<li>require-jsdoc 要求使用 JSDoc 注释</li>
+<li>semi 要求或禁止使用分号而不是 ASI</li>
+<li>semi-spacing 强制分号之前和之后使用一致的空格</li>
+<li>sort-vars 要求同一个声明块中的变量按顺序排列</li>
+<li>space-before-blocks 强制在块之前使用一致的空格</li>
+<li>space-before-function-paren 强制在 function 的左括号之前使用一致的空格</li>
+<li>space-in-parens 强制在圆括号内使用一致的空格</li>
+<li>space-infix-ops 要求操作符周围有空格</li>
+<li>space-unary-ops 强制在一元操作符前后使用一致的空格</li>
+<li>spaced-comment 强制在注释中 // 或 /* 使用一致的空格</li>
+</ul>
+
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2019041521155/">总结笔记20190415</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2019041543434/">H5与Native交互</a>
+        
+    </div>
+  </div>
+
+  
+  <div class="google-ads">
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-9618079338040236" data-ad-slot="8288106873"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://blog.utone.xyz">Utone</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://blog.utone.xyz/2019041516860/">https://blog.utone.xyz/2019041516860/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://blog.utone.xyz">Utone</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2021
+            <a href="https://blog.utone.xyz">Utone</a> Powered by <a href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" rel="external nofollow noopener noreferrer" target="_blank">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= theme.gtm_id %>" height="0" width="0" style="display:none;visibility:hidden">
+                </iframe></noscript>
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"FjXColpwTL0BsrjJIN8Pmnn0-gzGzoHsz\",\"API_KEY\":\"Ar7tucPRn3KV7UOidQxESoys\"},\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"13728585\",\"access_token\":\"21.7db096dd216693971c38906559dffcfa.2592000.1579318074.2888690973-16666326\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    ;(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-9618079338040236',
+    enable_page_level_ads: true
+  })
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
